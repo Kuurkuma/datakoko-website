@@ -1,0 +1,22 @@
+<header>
+    <nav>
+        <ul>
+            {{ range .Site.Menus.main }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+        </ul>
+        <ul>
+            {{ if .IsTranslated }}
+                {{ range .Translations }}
+                    <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                {{ end }}
+            {{ else }}
+                {{ range .Site.Languages }}
+                    {{ if not (eq .Lang $.Site.Language.Lang) }}
+                        <li><a href="/{{ .Lang }}/">{{ .LanguageName }}</a></li>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </ul>
+    </nav>
+</header>
