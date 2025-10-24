@@ -6,6 +6,10 @@ theme: datakoko
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 
+caches:
+  images:
+    dir: :cacheDir/images
+
 languages:
   en:
     languageName: English
