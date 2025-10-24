@@ -4,10 +4,10 @@
     {{ with .Params.subtitle }}
     <p class="subtitle">{{ . }}</p>
     {{ end }}
+    <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "contactUs" }}</a>
     {{ with .Params.tagline }}
     <p class="tagline">{{ . }}</p>
     {{ end }}
-    <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "contactUs" }}</a>
 </div>
 
 <!-- Intro Section -->
