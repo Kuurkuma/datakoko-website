@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Hugo-generated files
+public/
+.hugo_build.lock
