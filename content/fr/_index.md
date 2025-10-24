@@ -1,7 +1,7 @@
 +++
 date = '2025-08-07T11:09:55+02:00'
 draft = false
-title = "Sans Infra, la Data N'est Rien"
+title = "Sans infra, la data n'est rien"
 subtitle = "Bâtissez le socle solide qui transforme vos données brutes en actifs stratégiques"
 tagline = "Déployez votre infrastructure data en moins de 30 jours"
 description = "Datakoko construit des infrastructures data modernes pour les entreprises. Obtenez des plateformes data rapides et fiables déployées en moins de 30 jours avec souveraineté totale."

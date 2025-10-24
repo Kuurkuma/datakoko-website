@@ -1,3 +1,20 @@
 <footer>
-    <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
+    <div class="footer-bar">
+        <div class="footer-left">
+            <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
+        </div>
+        <ul class="footer-right">
+            {{ if .IsTranslated }}
+                {{ range .Translations }}
+                    <li><a href="{{ .Permalink }}">🌐 {{ .Language.LanguageName }}</a></li>
+                {{ end }}
+            {{ else }}
+                {{ range .Site.Languages }}
+                    {{ if not (eq .Lang $.Site.Language.Lang) }}
+                        <li><a href="/{{ .Lang }}/">🌐 {{ .LanguageName }}</a></li>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </ul>
+    </div>
 </footer>
