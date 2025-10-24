@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>{{ .Title }}</title>
+        <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
     </head>
     <body>
         {{ partial "header.html" . }}
@@ -9,6 +10,6 @@
             {{ block "main" . }}{{ end }}
         </main>
         {{ partial "footer.html" . }}
-        <script src="/js/copyright.js"></script>
+        <script src="{{ "js/copyright.js" | relURL }}"></script>
     </body>
 </html>
