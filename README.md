@@ -10,7 +10,7 @@ To run the site locally, follow these steps:
 
 2.  **Clone the repository:**
     ```bash
-    git clone https://github.com/kuurkuma/datakoko-website.git
+    git clone https://github.com/datakoko/datakoko-website.git
     cd datakoko-website
     ```
 
@@ -28,4 +28,4 @@ This site is deployed to GitHub Pages using a GitHub Actions workflow.
     The deployment workflow is triggered automatically when changes are pushed to the `main` branch.
 
 2.  **Enable GitHub Pages:**
-    Ensure that GitHub Pages is enabled for your repository. Go to your repository settings on GitHub, navigate to the "Pages" section, and configure it to deploy from the `Github Actions` method. The GitHub Action will push the built site to https://kuurkuma.github.io/datakoko-website.
+    Ensure that GitHub Pages is enabled for your repository. Go to your repository settings on GitHub, navigate to the "Pages" section, and configure it to deploy from the `Github Actions` method. The GitHub Action will push the built site to https://datakoko.github.io/datakoko-website.
