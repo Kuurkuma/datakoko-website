@@ -1,11 +1,14 @@
 <header>
     <nav>
-        <ul>
-            {{ range .Site.Menus.main }}
-                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-            {{ end }}
-        </ul>
-        <ul>
+        <div class="nav-left">
+            <a href="{{ "/" | relLangURL }}" class="site-title">{{ .Site.Title }}</a>
+            <ul>
+                {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+        <ul class="nav-right">
             {{ if .IsTranslated }}
                 {{ range .Translations }}
                     <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>

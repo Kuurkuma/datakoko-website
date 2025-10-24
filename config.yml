@@ -6,6 +6,22 @@ theme: datakoko
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 
+enableRobotsTXT: true
+
+sitemap:
+  changefreq: monthly
+  filename: sitemap.xml
+  priority: 0.5
+
+params:
+  description: "Custom data platform solutions for small and medium businesses. Build, optimize, and own your data infrastructure."
+  keywords: "data platform, data infrastructure, analytics, self-hosted analytics, cost optimization, ETL, data warehouse, business intelligence, BI, SMB data solutions"
+  email: "contact@datakoko.com"
+  social:
+    linkedin: ""
+    twitter: ""
+    github: ""
+
 caches:
   images:
     dir: :cacheDir/images
@@ -20,9 +36,12 @@ languages:
         - name: Home
           url: /
           weight: 1
+        - name: Services
+          url: /services/
+          weight: 2
         - name: Contact
           url: /contact/
-          weight: 2
+          weight: 3
   fr:
     languageName: Français
     contentDir: content/fr
@@ -32,6 +51,9 @@ languages:
         - name: Accueil
           url: /fr/
           weight: 1
+        - name: Services
+          url: /fr/services/
+          weight: 2
         - name: Contact
           url: /fr/contact/
-          weight: 2
+          weight: 3

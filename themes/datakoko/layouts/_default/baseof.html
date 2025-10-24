@@ -1,8 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ .Language.Lang }}">
     <head>
-        <title>{{ .Title }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Primary Meta Tags -->
+        <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+        {{ $description := .Params.description | default .Site.Params.description }}
+        <meta name="description" content="{{ $description }}">
+        <meta name="keywords" content="{{ .Site.Params.keywords }}">
+        <meta name="author" content="{{ .Site.Title }}">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/jpeg" href="{{ "img/favicon.jpeg" | relURL }}">
+        <link rel="apple-touch-icon" href="{{ "img/favicon.jpeg" | relURL }}">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+        <meta property="og:url" content="{{ .Permalink }}">
+        <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+        <meta property="og:description" content="{{ $description }}">
+        <meta property="og:image" content="{{ "img/favicon.jpeg" | absURL }}">
+        <meta property="og:site_name" content="{{ .Site.Title }}">
+        <meta property="og:locale" content="{{ if eq .Language.Lang "fr" }}fr_FR{{ else }}en_US{{ end }}">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+        <meta name="twitter:description" content="{{ $description }}">
+        <meta name="twitter:image" content="{{ "img/favicon.jpeg" | absURL }}">
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="{{ .Permalink }}">
+
+        <!-- Alternate Language Links -->
+        {{ if .IsTranslated }}
+            {{ range .Translations }}
+            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+            {{ end }}
+        {{ end }}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+
         <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
+
+        <!-- Structured Data (JSON-LD) -->
+        {{ partial "schema.html" . }}
     </head>
     <body>
         {{ partial "header.html" . }}

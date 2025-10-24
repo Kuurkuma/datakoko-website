@@ -1,0 +1,31 @@
+{{ define "main" }}
+<article class="service-page">
+    <header class="service-header">
+        {{ with .Params.icon }}
+        <div class="service-icon">{{ . }}</div>
+        {{ end }}
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.summary }}
+        <p class="service-summary">{{ . }}</p>
+        {{ end }}
+    </header>
+
+    <div class="service-content">
+        {{ .Content }}
+    </div>
+
+    <div class="service-cta">
+        <h2>{{ i18n "readyToStart" }}</h2>
+        <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "contactUs" }}</a>
+    </div>
+
+    <nav class="service-nav">
+        {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" class="service-nav-prev">← {{ .Title }}</a>
+        {{ end }}
+        {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" class="service-nav-next">{{ .Title }} →</a>
+        {{ end }}
+    </nav>
+</article>
+{{ end }}
