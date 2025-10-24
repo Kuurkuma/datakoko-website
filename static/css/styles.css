@@ -72,7 +72,7 @@ body { display: flex; flex-direction: column; }
 main { flex: 1 0 auto; }
 
 /* Header & Navigation */
-header {
+.site-header {
     background-color: var(--bg-white);
     border-bottom: var(--border-width) solid var(--border-color);
     padding: 1rem 0;
@@ -82,7 +82,7 @@ header {
     box-shadow: var(--shadow-sm);
 }
 
-header nav {
+.site-header nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -105,30 +105,30 @@ header nav {
     font-size: 1.25rem;
 }
 
-header nav ul {
+.site-header nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
     align-items: center;
 }
 
-header nav a {
+.site-header nav a {
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
     transition: color 0.2s;
 }
 
-header nav a:hover {
+.site-header nav a:hover {
     color: var(--primary-color);
 }
 
 /* Active nav link */
-header nav a.active {
+.site-header nav a.active {
     color: var(--primary-color);
     position: relative;
 }
-header nav a.active::after {
+.site-header nav a.active::after {
     content: "";
     position: absolute;
     left: 0;
@@ -185,6 +185,7 @@ main { padding: 3rem 2rem; }
     gap: 2rem;
     margin: 2rem 0;
 }
+.challenges-grid > .challenge-item { flex: 1 1 18rem; max-width: 22rem; }
 
 .challenge-item {
     background: var(--bg-white);
@@ -309,6 +310,7 @@ main { padding: 3rem 2rem; }
     gap: 2rem;
     margin: 2rem 0;
 }
+.features > .feature { flex: 1 1 18rem; max-width: 22rem; }
 
 .feature {
     background: var(--bg-white);
@@ -384,6 +386,7 @@ a:hover { color: var(--link-hover); }
     gap: 2rem;
     margin: 2rem 0;
 }
+.benefits-grid > .benefit-item { flex: 1 1 18rem; max-width: 22rem; }
 
 .benefit-item {
     text-align: center;
