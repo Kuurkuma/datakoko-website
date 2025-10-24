@@ -3,7 +3,7 @@
         <div class="nav-left">
             <a href="{{ "/" | relLangURL }}" class="site-title">{{ .Site.Title }}</a>
             <input id="nav-toggle" type="checkbox" aria-label="Toggle navigation" />
-            <label for="nav-toggle" class="nav-toggle" aria-hidden="true">☰</label>
+            <label for="nav-toggle" class="nav-toggle" aria-hidden="true"></label>
             <ul class="nav-main">
                 {{ $current := . }}
                 {{ range .Site.Menus.main }}
