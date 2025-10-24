@@ -35,6 +35,15 @@
         {{ end }}
     </section>
 
+    <!-- Contact Form Section -->
+    {{ $tally := site.Data.config.contact.tally_form_url }}
+    {{ with $tally }}
+    <section class="contact-form-section">
+        <iframe data-tally-src="{{ . }}" width="100%" height="284" frameBorder="0" marginHeight="0" marginWidth="0" title="Contact form"></iframe>
+        <script async src="https://tally.so/widgets/embed.js"></script>
+    </section>
+    {{ end }}
+
     <!-- Process Section -->
     <section class="process-section">
         <h2>{{ i18n "ourProcess" }}</h2>

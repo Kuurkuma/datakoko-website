@@ -1,0 +1,5 @@
+[contact]
+# Tally embed URL for the contact form
+# Example format: https://tally.so/embed/<FORM_ID>?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1
+tally_form_url = "https://tally.so/embed/nrNooM?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+
