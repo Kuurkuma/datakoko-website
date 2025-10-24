@@ -10,7 +10,7 @@
                     {{ $isMenu := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
                     {{ $isPrefix := hasPrefix $current.RelPermalink $menuURL }}
                     {{ $isCurrent := or $isExact (or $isMenu $isPrefix) }}
-                    <li><a href="{{ $menuURL | relURL }}" class="{{ if $isCurrent }}active{{ end }}">{{ .Name }}</a></li>
+                    <li><a href="{{ $menuURL }}" class="{{ if $isCurrent }}active{{ end }}">{{ .Name }}</a></li>
                 {{ end }}
             </ul>
         </div>
