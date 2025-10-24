@@ -2,3 +2,32 @@ baseURL: ""
 languageCode: en-us
 title: Datakoko
 theme: datakoko
+
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+
+languages:
+  en:
+    languageName: English
+    contentDir: content/en
+    weight: 1
+    menu:
+      main:
+        - name: Home
+          url: /
+          weight: 1
+        - name: Contact
+          url: /contact/
+          weight: 2
+  fr:
+    languageName: Français
+    contentDir: content/fr
+    weight: 2
+    menu:
+      main:
+        - name: Accueil
+          url: /fr/
+          weight: 1
+        - name: Contact
+          url: /fr/contact/
+          weight: 2
