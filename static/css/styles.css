@@ -611,6 +611,20 @@ a:hover { color: var(--link-hover); }
     min-height: 22.5rem; /* 360px */
     border: 0;
 }
+.embed-wrapper { position: relative; }
+.embed-wrapper iframe { opacity: 0; transition: opacity 0.25s ease; }
+.embed-wrapper.loaded iframe { opacity: 1; }
+.tally-loader { position: absolute; inset: 0; display: grid; place-items: center; }
+.tally-loader::before {
+    content: "";
+    width: 1.25rem; height: 1.25rem;
+    border-radius: 50%;
+    border: 0.125rem solid var(--border-color);
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.embed-wrapper.loaded .tally-loader { opacity: 0; visibility: hidden; transition: opacity 0.2s ease; }
 .tally-frame { padding: 1.5rem; border-radius: var(--radius-md); background: var(--tally-bg); border: none; box-shadow: var(--shadow-md); }
 .contact-links {
     text-align: center;

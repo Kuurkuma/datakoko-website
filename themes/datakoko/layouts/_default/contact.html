@@ -14,7 +14,8 @@
     {{ with $tally }}
     <section class="contact-form-section">
         <h2>{{ i18n "getInTouch" }}</h2>
-        <div class="tally-frame">
+        <div class="tally-frame embed-wrapper">
+            <div class="tally-loader" aria-hidden="true"></div>
             <iframe data-tally-src="{{ . }}" width="100%" height="360" frameBorder="0" marginHeight="0" marginWidth="0" title="{{ i18n "getInTouch" }}"></iframe>
         </div>
         <script async src="https://tally.so/widgets/embed.js"></script>
@@ -29,6 +30,21 @@
             el.setAttribute('data-tally-src', u.toString());
             if (window.Tally && window.Tally.loadEmbeds) { window.Tally.loadEmbeds(); }
           } catch(e) {}
+        })();
+        // Simple loader: fade in iframe when loaded, hide spinner
+        (function(){
+          var wrapper = document.querySelector('.embed-wrapper');
+          var iframe = wrapper && wrapper.querySelector('iframe');
+          if (!wrapper || !iframe) return;
+          function markLoaded(){ wrapper.classList.add('loaded'); }
+          iframe.addEventListener('load', markLoaded, { once: true });
+          // Fallback: in case embed script swaps the iframe, poll briefly
+          var tries = 0, iv = setInterval(function(){
+            if (!wrapper) return clearInterval(iv);
+            var ifr = wrapper.querySelector('iframe');
+            if (ifr && ifr.complete) { markLoaded(); clearInterval(iv); }
+            if (++tries > 40) clearInterval(iv); // ~2s max
+          }, 50);
         })();
         </script>
     </section>
