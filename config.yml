@@ -33,11 +33,11 @@ languages:
     weight: 1
     menu:
       main:
-        - name: Home
-          url: /
-          weight: 1
         - name: Services
           url: /services/
+          weight: 1
+        - name: Approach
+          url: /approach/
           weight: 2
         - name: Contact
           url: /contact/
@@ -46,13 +46,20 @@ languages:
     languageName: Français
     contentDir: content/fr
     weight: 2
+    permalinks:
+      challenges: /defis/:slug/
+      benefits: /avantages/:slug/
+      audit-benefits: /avantages-audit/:slug/
+      process-steps: /processus-etapes/:slug/
+      urgency-points: /raisons-d-agir/:slug/
+      services: /services/:slug/
     menu:
       main:
-        - name: Accueil
-          url: /fr/
-          weight: 1
         - name: Services
           url: /fr/services/
+          weight: 1
+        - name: Approche
+          url: /fr/approche/
           weight: 2
         - name: Contact
           url: /fr/contact/

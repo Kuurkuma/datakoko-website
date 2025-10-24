@@ -1,0 +1,18 @@
+{{ if not .IsHome }}
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="{{ relLangURL "/" }}">{{ i18n "homeLabel" }}</a>
+    {{ $current := . }}
+    {{ with .CurrentSection }}
+      {{ if ne .RelPermalink (relLangURL "/") }}
+        <span class="sep">/</span>
+        {{ if eq $current.Kind "section" }}
+          <span aria-current="page">{{ .Title }}</span>
+        {{ else }}
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="sep">/</span>
+          <span aria-current="page">{{ $current.Title }}</span>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </nav>
+{{ end }}

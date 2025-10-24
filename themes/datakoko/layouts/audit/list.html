@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-block">
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}
+      <p class="page-description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <section class="audit-section">
+    <h2>{{ i18n "whatYouGet" }}</h2>
+    <ul class="audit-benefits-list">
+      {{ range (sort (where .Site.RegularPages "Section" "audit-benefits") "Weight") }}
+        <li><strong>{{ .Title }}:</strong> {{ .Content }}</li>
+      {{ end }}
+    </ul>
+  </section>
+</div>
+{{ end }}

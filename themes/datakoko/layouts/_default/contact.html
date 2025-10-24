@@ -7,66 +7,39 @@
         {{ end }}
     </header>
 
-    <!-- Free Audit Section -->
-    <section class="audit-section">
-        <h2>{{ i18n "freeAudit" }}</h2>
-        {{ with .Params.audit_description }}
-        <p class="audit-description">{{ . | markdownify }}</p>
-        {{ end }}
-
-        <h3>{{ i18n "whatYouGet" }}</h3>
-        <ul class="audit-benefits-list">
-            {{ range (where .Site.RegularPages "Section" "audit-benefits") }}
-            <li>
-                <strong>{{ .Title }}:</strong> {{ .Content }}
-            </li>
-            {{ end }}
-        </ul>
-    </section>
-
-    <!-- Contact Info Section -->
-    <section class="contact-info-section">
-        <h2>{{ i18n "contactInformation" }}</h2>
-        {{ with .Params.contact_email }}
-        <p class="contact-email"><strong>Email:</strong> <a href="mailto:{{ . }}">{{ . }}</a></p>
-        {{ end }}
-        {{ with .Params.response_time }}
-        <p class="response-time">{{ . }}</p>
-        {{ end }}
-    </section>
+    
 
     <!-- Contact Form Section -->
     {{ $tally := site.Data.config.contact.tally_form_url }}
     {{ with $tally }}
     <section class="contact-form-section">
-        <iframe data-tally-src="{{ . }}" width="100%" height="284" frameBorder="0" marginHeight="0" marginWidth="0" title="Contact form"></iframe>
+        <h2>{{ i18n "getInTouch" }}</h2>
+        <iframe data-tally-src="{{ . }}" width="100%" height="284" frameBorder="0" marginHeight="0" marginWidth="0" title="{{ i18n "getInTouch" }}"></iframe>
         <script async src="https://tally.so/widgets/embed.js"></script>
+        <script>
+        (function(){
+          try {
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var el = document.querySelector('.contact-form-section iframe');
+            if (!el) return;
+            var u = new URL(el.getAttribute('data-tally-src'), window.location.href);
+            u.searchParams.set('theme', prefersDark ? 'dark' : 'light');
+            el.setAttribute('data-tally-src', u.toString());
+            if (window.Tally && window.Tally.loadEmbeds) { window.Tally.loadEmbeds(); }
+          } catch(e) {}
+        })();
+        </script>
     </section>
     {{ end }}
 
-    <!-- Process Section -->
-    <section class="process-section">
-        <h2>{{ i18n "ourProcess" }}</h2>
-        <ol class="process-steps-list">
-            {{ range (where .Site.RegularPages "Section" "process-steps") }}
-            <li>
-                <strong>{{ .Title }}:</strong> {{ .Content }}
-            </li>
-            {{ end }}
-        </ol>
-    </section>
-
-    <!-- Urgency Section -->
-    <section class="urgency-section">
-        <h2>{{ i18n "whyActNow" }}</h2>
-        <p class="urgency-subtitle">{{ i18n "urgencySubtitle" }}</p>
-        <ul class="urgency-list">
-            {{ range (where .Site.RegularPages "Section" "urgency-points") }}
-            <li>{{ .Title }}</li>
-            {{ end }}
-        </ul>
-        {{ with .Params.closing_statement }}
-        <p class="closing-statement"><strong>{{ . }}</strong></p>
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <h2>{{ i18n "contactInformation" }}</h2>
+        {{ with .Params.contact_email }}
+        <p class="contact-email"><strong>{{ i18n "emailLabel" }}:</strong> <a href="mailto:{{ . }}">{{ . }}</a></p>
+        {{ end }}
+        {{ with .Params.response_time }}
+        <p class="response-time">{{ . }}</p>
         {{ end }}
     </section>
 </div>

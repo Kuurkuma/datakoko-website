@@ -1,0 +1,64 @@
+{{ define "main" }}
+<div class="page-block">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}
+      <p class="page-description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ $audit := .Site.GetPage "section" "audit" }}
+  {{ $process := .Site.GetPage "section" "process" }}
+  {{ $why := .Site.GetPage "section" "why-act-now" }}
+
+  {{ with $audit }}
+  <section class="audit-section">
+    <h2>{{ .Title }}</h2>
+    {{ with .Params.description }}
+      <p class="audit-description">{{ . }}</p>
+    {{ end }}
+    <h3>{{ i18n "whatYouGet" }}</h3>
+    <ul class="audit-benefits-list">
+      {{ range (sort (where $.Site.RegularPages "Section" "audit-benefits") "Weight") }}
+        <li><strong>{{ .Title }}:</strong> {{ .Content }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  {{ with $process }}
+  <section class="process-section">
+    <h2>{{ .Title }}</h2>
+    {{ with .Params.description }}
+      <p class="audit-description">{{ . }}</p>
+    {{ end }}
+    <ol class="process-steps-list">
+      {{ range (sort (where $.Site.RegularPages "Section" "process-steps") "Weight") }}
+        <li><strong>{{ .Title }}:</strong> {{ .Content }}</li>
+      {{ end }}
+    </ol>
+  </section>
+  {{ end }}
+
+  {{ with $why }}
+  <section class="urgency-section">
+    <h2>{{ .Title }}</h2>
+    {{ with .Params.description }}
+      <p class="audit-description">{{ . }}</p>
+    {{ end }}
+    <p class="urgency-subtitle">{{ i18n "urgencySubtitle" }}</p>
+    <ul class="urgency-list">
+      {{ range (sort (where $.Site.RegularPages "Section" "urgency-points") "Weight") }}
+        <li>{{ .Title }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</div>
+
+<section class="service-cta">
+  <h2>{{ i18n "readyToStart" }}</h2>
+  <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "getInTouch" }}</a>
+  </section>
+{{ end }}

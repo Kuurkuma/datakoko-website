@@ -39,6 +39,9 @@
 <section class="approach-section">
     <h2>{{ . }}</h2>
     <p class="approach-text">{{ $.Params.approach_text | markdownify }}</p>
+    {{ with site.GetPage "section" "approach" }}
+    <p><a href="{{ .RelPermalink }}" class="feature-link">{{ i18n "discoverApproach" }} →</a></p>
+    {{ end }}
 </section>
 {{ end }}
 
@@ -47,14 +50,14 @@
     <h2>{{ i18n "ourServices" }}</h2>
     <div class="features">
         {{ range (where .Site.RegularPages "Section" "services") }}
-        <div class="feature">
+        <a class="feature feature-card-link" href="{{ .RelPermalink }}">
             {{ with .Params.icon }}
             <div class="feature-icon">{{ . }}</div>
             {{ end }}
-            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <h3>{{ .Title }}</h3>
             <p>{{ .Params.summary | default .Summary }}</p>
-            <a href="{{ .RelPermalink }}" class="feature-link">{{ i18n "learnMore" }} →</a>
-        </div>
+            <span class="feature-link">{{ i18n "learnMore" }} →</span>
+        </a>
         {{ end }}
     </div>
 </section>
@@ -74,4 +77,10 @@
         {{ end }}
     </div>
 </section>
+
+<!-- Footer CTA -->
+<section class="service-cta">
+    <h2>{{ i18n "readyToStart" }}</h2>
+    <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "getInTouch" }}</a>
+    </section>
 {{ end }}

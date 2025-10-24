@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="page-block">
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}
+      <p class="page-description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <section class="urgency-section">
+    <h2>{{ i18n "whyActNow" }}</h2>
+    <p class="urgency-subtitle">{{ i18n "urgencySubtitle" }}</p>
+    <ul class="urgency-list">
+      {{ range (sort (where .Site.RegularPages "Section" "urgency-points") "Weight") }}
+        <li>{{ .Title }}</li>
+      {{ end }}
+    </ul>
+  </section>
+</div>
+{{ end }}

@@ -1,5 +1,6 @@
 {{ define "main" }}
 <article class="service-page">
+    {{ partial "breadcrumbs.html" . }}
     <header class="service-header">
         {{ with .Params.icon }}
         <div class="service-icon">{{ . }}</div>
