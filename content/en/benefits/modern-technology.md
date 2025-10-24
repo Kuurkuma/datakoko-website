@@ -1,7 +1,7 @@
 +++
-title = "Modern Technology"
+title = "Modern Stack"
 weight = 5
-icon = "⚡"
+icon = "🚀"
 +++
 
-We leverage the latest open-source tools and best practices to build robust, maintainable systems.
+We use modern technology (DLT, dbt, DuckDB) designed for efficiency and performance.

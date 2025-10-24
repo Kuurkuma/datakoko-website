@@ -1,10 +1,11 @@
 +++
 date = '2025-08-07T11:09:55+02:00'
 draft = false
-title = 'Votre Plateforme Data, Votre Contrôle'
-subtitle = 'Nous aidons les PME à créer leur infrastructure data et leurs solutions analytiques personnalisées'
-tagline = 'Conçu pour les entreprises qui veulent maîtriser leurs données sans exploser leur budget'
-description = "Datakoko aide les PME à construire des plateformes data sur mesure, optimiser les coûts d'infrastructure et déployer des solutions analytiques auto-hébergées."
+title = "Sans Infra, la Data N'est Rien"
+subtitle = "Bâtissez le socle solide qui transforme vos données brutes en actifs stratégiques"
+tagline = "Déployez votre infrastructure data en moins de 30 jours"
+description = "Datakoko construit des infrastructures data modernes pour les entreprises. Obtenez des plateformes data rapides et fiables déployées en moins de 30 jours avec souveraineté totale."
+intro = "Vous possédez des données précieuses, mais sans infrastructure adéquate, elles restent inexploitées. Avant toute analyse, dashboard ou projet d'IA, il faut une **infrastructure de données fiable et performante**. C'est précisément ce que nous construisons pour vous."
+approach_title = "Notre Approche"
+approach_text = "Nous déployons le socle technique solide qui transforme vos données brutes en actifs stratégiques—**en moins de 30 jours**. Nous nous spécialisons dans les plateformes de données modernes avec une option clé : installer votre système analytique directement sur **vos propres serveurs**, vous garantissant ainsi une **souveraineté totale**."
 +++
-
-Nous aidons les petites et moyennes entreprises à construire leur propre plateforme data de A à Z. Que vous partiez de zéro ou que vous cherchiez à optimiser votre infrastructure existante, nous proposons des solutions sur mesure qui vous donnent le contrôle de vos données.

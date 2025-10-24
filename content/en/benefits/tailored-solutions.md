@@ -1,7 +1,7 @@
 +++
-title = "Tailored Solutions"
+title = "Solid Foundation"
 weight = 1
-icon = "🎯"
+icon = "🏗️"
 +++
 
-No one-size-fits-all packages. Every solution is designed specifically for your business needs and budget.
+We build the permanent foundation for all your future data initiatives (BI, AI, Machine Learning).

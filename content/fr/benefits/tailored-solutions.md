@@ -1,7 +1,7 @@
 +++
-title = "Solutions Sur Mesure"
+title = "Fondation Solide"
 weight = 1
-icon = "🎯"
+icon = "🏗️"
 +++
 
-Pas de formules toutes faites. Chaque solution est conçue spécifiquement pour vos besoins métier et votre budget.
+Nous construisons le socle pérenne pour toutes vos futures initiatives data (BI, IA, Machine Learning).

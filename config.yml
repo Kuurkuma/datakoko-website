@@ -14,8 +14,8 @@ sitemap:
   priority: 0.5
 
 params:
-  description: "Custom data platform solutions for small and medium businesses. Build, optimize, and own your data infrastructure."
-  keywords: "data platform, data infrastructure, analytics, self-hosted analytics, cost optimization, ETL, data warehouse, business intelligence, BI, SMB data solutions"
+  description: "Build modern data infrastructure in under 30 days. DLT, dbt, DuckDB. Data sovereignty, fast deployment, cost control."
+  keywords: "data infrastructure, data platform, DuckDB, dbt, DLT, self-hosted analytics, data sovereignty, GDPR compliance, data warehouse, modern data stack, ETL pipeline"
   email: "contact@datakoko.com"
   social:
     linkedin: ""

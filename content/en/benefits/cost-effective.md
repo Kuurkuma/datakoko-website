@@ -1,7 +1,7 @@
 +++
-title = "Cost-Effective"
+title = "Fast Deployment"
 weight = 2
-icon = "💡"
+icon = "⚡"
 +++
 
-We help you build enterprise-grade data infrastructure at a fraction of the cost of traditional solutions.
+Your infrastructure is operational in less than 30 days. Stop waiting, start building.

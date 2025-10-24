@@ -1,7 +1,7 @@
 +++
-title = "Économique"
+title = "Déploiement Rapide"
 weight = 2
-icon = "💡"
+icon = "⚡"
 +++
 
-Nous vous aidons à construire une infrastructure data de niveau entreprise pour une fraction du coût des solutions traditionnelles.
+Votre infrastructure est opérationnelle en moins de 30 jours. Arrêtez d'attendre, commencez à construire.

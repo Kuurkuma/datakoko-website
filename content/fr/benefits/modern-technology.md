@@ -1,7 +1,7 @@
 +++
-title = "Technologies Modernes"
+title = "Stack Moderne"
 weight = 5
-icon = "⚡"
+icon = "🚀"
 +++
 
-Nous utilisons les derniers outils open-source et les meilleures pratiques pour construire des systèmes robustes et maintenables.
+Nous utilisons une stack technologique moderne (DLT, dbt, DuckDB) conçue pour l'efficacité.

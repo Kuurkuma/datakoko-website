@@ -1,10 +1,11 @@
 +++
 date = '2025-08-07T11:09:55+02:00'
 draft = false
-title = 'Your Data Platform, Your Control'
-subtitle = 'Empowering small and medium businesses with custom data infrastructure and analytics solutions'
-tagline = 'Built for companies ready to own their data without breaking the bank'
-description = 'Datakoko helps SMBs build custom data platforms, optimize infrastructure costs, and deploy self-hosted analytics. Take control of your data without breaking the bank.'
+title = 'Without Infrastructure, Your Data Is Nothing'
+subtitle = 'Build the solid foundation that transforms your raw data into strategic assets'
+tagline = 'Deploy your data infrastructure in less than 30 days'
+description = 'Datakoko builds modern data infrastructure for businesses. Get fast, reliable data platforms deployed in under 30 days with full sovereignty and control.'
+intro = "You have valuable data, but without proper infrastructure, it remains untapped. Before any analysis, dashboards, or AI projects, you need a **reliable and performant data infrastructure**. That's exactly what we build for you."
+approach_title = "Our Approach"
+approach_text = "We deploy the solid technical foundation that transforms your raw data into strategic assets—**in less than 30 days**. We specialize in modern data platforms with a key option: installing your analytics system directly on **your own servers**, ensuring complete **data sovereignty**."
 +++
-
-We help small and medium-sized businesses build their own data platforms from the ground up. Whether you're starting from scratch or looking to optimize your existing infrastructure, we provide tailored solutions that put you in control of your data.

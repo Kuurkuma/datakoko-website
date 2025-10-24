@@ -10,9 +10,37 @@
     <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "contactUs" }}</a>
 </div>
 
-<article>
-    {{ .Content }}
-</article>
+<!-- Intro Section -->
+{{ with .Params.intro }}
+<section class="intro-section">
+    <p>{{ . | markdownify }}</p>
+</section>
+{{ end }}
+
+<!-- Challenges Section -->
+<section class="challenges-section">
+    <h2>{{ i18n "theChallenge" }}</h2>
+    <p class="section-subtitle">{{ i18n "challengeSubtitle" }}</p>
+    <div class="challenges-grid">
+        {{ range (where .Site.RegularPages "Section" "challenges") }}
+        <div class="challenge-item">
+            {{ with .Params.icon }}
+            <span class="challenge-icon">{{ . }}</span>
+            {{ end }}
+            <h3>{{ .Title }}</h3>
+            <p>{{ .Content }}</p>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- Approach Section -->
+{{ with .Params.approach_title }}
+<section class="approach-section">
+    <h2>{{ . }}</h2>
+    <p class="approach-text">{{ $.Params.approach_text | markdownify }}</p>
+</section>
+{{ end }}
 
 <!-- Services Section -->
 <section class="services-section">
