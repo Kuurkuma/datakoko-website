@@ -740,3 +740,102 @@ footer {
   .site-header nav { justify-content: center; }
   .site-header .nav-right { display: flex; width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 0.5rem 1rem; }
 }
+
+/* Tech Stack Section */
+.tech-stack-section {
+    padding: var(--space-7) 0;
+    background-color: var(--bg-light);
+}
+
+.tech-stack-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-3);
+    color: var(--text-dark);
+}
+
+.tech-stack-section .section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: var(--space-6);
+}
+
+.tech-stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: var(--content-max);
+    margin: 0 auto;
+}
+
+.tech-stack-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    background: var(--bg-white);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-width: 120px;
+    flex: 0 0 auto;
+}
+
+.tech-stack-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.tech-stack-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: var(--space-2);
+    position: relative;
+}
+
+.tech-stack-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tech-logo-fallback {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.tech-stack-item h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .tech-stack-grid {
+        gap: var(--space-3);
+    }
+
+    .tech-stack-item {
+        min-width: 100px;
+    }
+
+    .tech-stack-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .tech-stack-item h3 {
+        font-size: 0.85rem;
+    }
+}

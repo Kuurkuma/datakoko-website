@@ -11,6 +11,13 @@
         <article class="team-member-card">
             <a href="{{ .RelPermalink }}" class="team-member-link">
                 <div class="team-member-content">
+                    {{ $photoPath := printf "img/team/%s.jpg" .File.TranslationBaseName }}
+                    <div class="team-member-photo">
+                        <img src="{{ $photoPath | relURL }}" alt="{{ .Title }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="team-photo-placeholder" style="display:none;">
+                            <span>{{ substr .Title 0 1 }}</span>
+                        </div>
+                    </div>
                     <h2>{{ .Title }}</h2>
                     {{ with .Params.role }}
                     <p class="team-member-role">{{ . }}</p>
@@ -34,22 +41,31 @@
 
 <style>
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
     margin-top: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .team-member-card {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 2rem;
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 12px;
+    padding: 0;
     transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    flex: 0 0 auto;
 }
 
 .team-member-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
 .team-member-link {
@@ -58,35 +74,93 @@
     display: block;
 }
 
+.team-member-photo {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.team-member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    font-weight: bold;
+    color: white;
+}
+
+.team-member-content {
+    padding: 2rem;
+    text-align: center;
+}
+
 .team-member-content h2 {
-    margin-top: 0;
+    margin: 0 0 0.5rem 0;
     color: #2c3e50;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
 }
 
 .team-member-role {
-    color: #7f8c8d;
+    color: #667eea;
     font-weight: 600;
-    margin: 0.5rem 0 1rem 0;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
 }
 
 .team-member-summary {
     color: #34495e;
-    line-height: 1.6;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .team-member-social {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e1e4e8;
 }
 
 .linkedin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: #0077b5;
     text-decoration: none;
     font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #0077b5;
+    border-radius: 6px;
+    transition: all 0.2s;
 }
 
 .linkedin-link:hover {
-    text-decoration: underline;
+    background: #0077b5;
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .team-member-card {
+        max-width: 100%;
+    }
+
+    .team-member-photo {
+        height: 250px;
+    }
+
+    .team-photo-placeholder {
+        font-size: 4rem;
+    }
 }
 </style>
 {{ end }}

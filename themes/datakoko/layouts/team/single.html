@@ -2,6 +2,13 @@
 <article class="team-member-page">
     {{ partial "breadcrumbs.html" . }}
     <header class="team-member-header">
+        {{ $photoPath := printf "img/team/%s.jpg" .File.TranslationBaseName }}
+        <div class="team-member-photo-large">
+            <img src="{{ $photoPath | relURL }}" alt="{{ .Title }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="team-photo-placeholder-large" style="display:none;">
+                <span>{{ substr .Title 0 1 }}</span>
+            </div>
+        </div>
         <h1>{{ .Title }}</h1>
         {{ with .Params.role }}
         <p class="team-member-role-title">{{ . }}</p>
@@ -45,6 +52,33 @@
     margin-bottom: 3rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid #e1e4e8;
+}
+
+.team-member-photo-large {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-member-photo-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-photo-placeholder-large {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: white;
 }
 
 .team-member-header h1 {

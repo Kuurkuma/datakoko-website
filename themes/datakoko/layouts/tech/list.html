@@ -1,0 +1,109 @@
+{{ define "main" }}
+<div class="tech-list-page">
+    {{ partial "breadcrumbs.html" . }}
+    <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        <p class="page-description">{{ .Content }}</p>
+    </header>
+
+    <div class="tech-grid">
+        {{ range .Pages.ByWeight }}
+        <article class="tech-item">
+            <a href="{{ .RelPermalink }}" class="tech-link">
+                <div class="tech-logo">
+                    {{ $logoPath := printf "img/tech/%s.svg" .Params.logo_placeholder }}
+                    <img src="{{ $logoPath | relURL }}" alt="{{ .Title }} logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="tech-logo-placeholder" style="display:none;">
+                        <span>{{ substr .Title 0 1 }}</span>
+                    </div>
+                </div>
+                <h2>{{ .Title }}</h2>
+                {{ with .Params.category }}
+                <p class="tech-category">{{ . }}</p>
+                {{ end }}
+                <p class="tech-summary">{{ .Summary }}</p>
+            </a>
+        </article>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tech-item {
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    width: 280px;
+    flex: 0 0 auto;
+}
+
+.tech-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.tech-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.tech-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.tech-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tech-logo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.tech-item h2 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.tech-category {
+    color: #7f8c8d;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 1rem 0;
+}
+
+.tech-summary {
+    color: #34495e;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+</style>
+{{ end }}

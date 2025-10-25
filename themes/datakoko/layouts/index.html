@@ -62,6 +62,31 @@
     </div>
 </section>
 
+<!-- Tech Stack Section -->
+<section class="tech-stack-section">
+    <h2>{{ if eq .Language.Lang "fr" }}Notre Stack Technique{{else}}Our Tech Stack{{end}}</h2>
+    <p class="section-subtitle">{{ if eq .Language.Lang "fr" }}Technologies modernes et éprouvées pour votre infrastructure data{{else}}Modern, proven technologies for your data infrastructure{{end}}</p>
+    <div class="tech-stack-grid">
+        {{ range first 8 (where .Site.RegularPages "Section" "tech").ByWeight }}
+        <div class="tech-stack-item">
+            {{ $logoPath := printf "img/tech/%s.svg" .Params.logo_placeholder }}
+            <div class="tech-stack-logo">
+                <img src="{{ $logoPath | relURL }}" alt="{{ .Title }} logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="tech-logo-fallback" style="display:none;">
+                    <span>{{ substr .Title 0 1 }}</span>
+                </div>
+            </div>
+            <h3>{{ .Title }}</h3>
+        </div>
+        {{ end }}
+    </div>
+    {{ with site.GetPage "section" "tech" }}
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="{{ .RelPermalink }}" class="feature-link">{{ if eq $.Language.Lang "fr" }}Voir toutes les technologies{{else}}View all technologies{{end}} →</a>
+    </p>
+    {{ end }}
+</section>
+
 <!-- Benefits Section -->
 <section class="benefits">
     <h2>{{ i18n "whyChooseUs" }}</h2>
