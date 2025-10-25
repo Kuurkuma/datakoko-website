@@ -253,6 +253,9 @@
     max-width: 30rem;
     margin: 0 auto;
 }
+.credits-page h1 {
+    margin-bottom: 1.5rem;
+}
 .credits-page .credits-list ul {
     list-style: none;
     padding: 0;

@@ -6,7 +6,7 @@ description = "Acknowledgments for open source tools and resources used in this 
 layout = "credits"
 +++
 
-This website was built using open source technologies and free resources. 
+This website is built using open source technologies. 
 
 We are grateful to the following projects and creators:
 
