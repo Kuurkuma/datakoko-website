@@ -3,6 +3,7 @@ title = "Credits"
 date = 2025-10-25T10:00:00Z
 draft = false
 description = "Acknowledgments for open source tools and resources used in this website."
+layout = "credits"
 +++
 
 This website was built using open source technologies and free resources. 

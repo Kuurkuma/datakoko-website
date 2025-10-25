@@ -48,10 +48,15 @@ footer {
 }
 
 copyright-notice {
-    display: block;
+    display: inline;
     font-size: 0.75rem;
     color: var(--text-light);
     margin-top: var(--space-2);
+}
+.credits {
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.75rem;
 }
 
 .footer-tagline {
