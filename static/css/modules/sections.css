@@ -1,0 +1,248 @@
+/* Homepage Sections */
+
+/* Intro Section */
+.intro-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.intro-section p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* Challenges Section */
+.challenges-section {
+    margin: var(--space-8) 0;
+}
+
+.challenges-section h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.challenges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-5);
+    margin: var(--space-5) 0;
+}
+
+.challenges-grid > .challenge-item {
+    flex: 1 1 18rem;
+    max-width: 22rem;
+}
+
+.challenge-item {
+    background: var(--bg-white);
+    padding: var(--space-5);
+    border-radius: 1rem;
+    border: var(--border-width) solid var(--border-color);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.challenge-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.challenge-item h3 {
+    font-size: 1.125rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.challenge-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Approach Section */
+.approach-section {
+    background: var(--bg-white);
+    padding: var(--space-7);
+    border-radius: 1rem;
+    margin: var(--space-8) 0;
+    border: var(--border-width) solid var(--border-color);
+    text-align: center;
+}
+
+.approach-section h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.approach-text {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Services Section */
+.services-section {
+    margin: var(--space-8) 0;
+}
+
+.services-section h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-5);
+    margin: var(--space-5) 0;
+}
+
+.features > .feature {
+    flex: 1 1 18rem;
+    max-width: 22rem;
+}
+
+.feature {
+    background: var(--bg-white);
+    padding: var(--space-5);
+    border-radius: 1rem;
+    border: var(--border-width) solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature:hover {
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.feature h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.feature p {
+    text-align: center;
+    color: var(--text-light);
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.feature-card-link,
+.feature-card-link * {
+    text-decoration: none;
+}
+
+.feature-card-link {
+    color: inherit;
+}
+
+.feature-link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    transition: color 0.2s;
+}
+
+.feature-link:hover {
+    color: var(--link-hover);
+}
+
+/* Benefits Section */
+.benefits {
+    background: var(--bg-white);
+    padding: var(--space-7);
+    border-radius: 1rem;
+    margin: var(--space-8) 0;
+    border: var(--border-width) solid var(--border-color);
+}
+
+.benefits h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-5);
+    margin: var(--space-5) 0;
+}
+
+.benefits-grid > .benefit-item {
+    flex: 1 1 18rem;
+    max-width: 22rem;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.benefit-item h3 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Service CTA Section */
+.service-cta {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 0;
+}
+
+.service-cta h2 {
+    font-size: 1.75rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}

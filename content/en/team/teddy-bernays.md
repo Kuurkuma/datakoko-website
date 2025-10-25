@@ -5,18 +5,10 @@ draft = false
 weight = 1
 role = "Founder & Data Engineer"
 linkedin = "https://www.linkedin.com/in/tbernays/"
+github = "https://github.com/Kuurkuma"
 description = "Teddy Bernays, Founder and Data Engineer at Datakoko. Expert in modern data infrastructure, DuckDB, dbt, and self-hosted analytics solutions."
 +++
 
-Teddy Bernays is the founder of Datakoko, bringing deep expertise in building modern data infrastructure for businesses.
+Teddy builds data infrastructure you actually own. No vendor lock-in, no hidden costs—just solid foundations for your business.
 
-## Expertise
-
-- **Data Infrastructure**: Design and implementation of scalable data platforms
-- **Modern Data Stack**: DuckDB, dbt, DLT, and open-source analytics tools
-- **Self-Hosted Solutions**: Deployment of analytics platforms on private infrastructure
-- **Cost Optimization**: Infrastructure optimization and cloud cost reduction
-
-## Approach
-
-Teddy specializes in helping businesses build robust data infrastructure that they fully own and control. With a focus on modern technologies and rapid deployment, he ensures companies can transform their raw data into strategic assets in under 30 days.
+He specializes in DuckDB, dbt, and self-hosted analytics platforms. Get your data platform deployed in under 30 days.

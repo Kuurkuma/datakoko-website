@@ -1,0 +1,46 @@
+/* Hero Section */
+
+.hero {
+    text-align: center;
+    padding: var(--space-7) 0 var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    margin-bottom: var(--space-4);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin: var(--space-4) 0;
+    line-height: 1.6;
+}
+
+.tagline {
+    margin-top: var(--space-5);
+    font-size: 1rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* CTA Buttons */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: var(--space-4);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}

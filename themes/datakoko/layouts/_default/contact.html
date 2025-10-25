@@ -50,6 +50,38 @@
     </section>
     {{ end }}
 
+    <!-- Your Partner Section -->
+    {{ $teamPages := where .Site.RegularPages "Section" "team" }}
+    {{ $teddy := index (where $teamPages ".File.TranslationBaseName" "teddy-bernays") 0 }}
+    {{ with $teddy }}
+    <section class="partner-section">
+        <h2>{{ if eq $.Language.Lang "fr" }}Votre Partenaire{{ else }}Your Partner{{ end }}</h2>
+        <div class="partner-card">
+            {{ $photoPath := printf "img/team/%s.jpg" .File.TranslationBaseName }}
+            <div class="partner-photo">
+                <img src="{{ $photoPath | relURL }}" alt="{{ .Title }}">
+            </div>
+            <div class="partner-info">
+                <h3>{{ .Title }}</h3>
+                <p class="partner-role">{{ .Params.role }}</p>
+                <div class="partner-bio">{{ .Content }}</div>
+                <div class="partner-social">
+                    {{ with .Params.linkedin }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
+                        <img src="{{ "img/icons/linkedin.svg" | relURL }}" alt="LinkedIn" class="social-icon">
+                    </a>
+                    {{ end }}
+                    {{ with .Params.github }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile">
+                        <img src="{{ "img/icons/github.svg" | relURL }}" alt="GitHub" class="social-icon">
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ end }}
+
     <!-- Contact Info Section -->
     <section class="contact-info-section">
         <h2>{{ i18n "contactInformation" }}</h2>

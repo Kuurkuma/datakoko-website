@@ -52,8 +52,8 @@
 }
 
 .team-member-card {
-    background: white;
-    border: 1px solid #e1e4e8;
+    background: var(--bg-white);
+    border: var(--border-width) solid var(--border-color);
     border-radius: 12px;
     padding: 0;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -65,7 +65,7 @@
 
 .team-member-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-lg);
 }
 
 .team-member-link {
@@ -79,7 +79,7 @@
     height: 300px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .team-member-photo img {
@@ -106,19 +106,19 @@
 
 .team-member-content h2 {
     margin: 0 0 0.5rem 0;
-    color: #2c3e50;
+    color: var(--text-dark);
     font-size: 1.75rem;
 }
 
 .team-member-role {
-    color: #667eea;
+    color: var(--primary-color);
     font-weight: 600;
     margin: 0 0 1.5rem 0;
     font-size: 1.1rem;
 }
 
 .team-member-summary {
-    color: #34495e;
+    color: var(--text-light);
     line-height: 1.8;
     margin-bottom: 1.5rem;
     text-align: left;
@@ -127,25 +127,26 @@
 .team-member-social {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #e1e4e8;
+    border-top: var(--border-width) solid var(--border-color);
 }
 
 .linkedin-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #0077b5;
+    color: var(--text-light);
     text-decoration: none;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
-    border: 2px solid #0077b5;
+    border: var(--border-width) solid var(--border-color);
     border-radius: 6px;
     transition: all 0.2s;
 }
 
 .linkedin-link:hover {
-    background: #0077b5;
+    background: var(--primary-color);
     color: white;
+    border-color: var(--primary-color);
     text-decoration: none;
 }
 
