@@ -247,3 +247,30 @@
     color: var(--text-dark);
     margin-bottom: 1.5rem;
 }
+
+/* Credits Page */
+.credits-page .credits-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.credits-page .credits-list li {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.credits-page .credits-list a {
+    font-weight: 600;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.credits-page .credits-list a:hover {
+    color: var(--link-hover);
+}

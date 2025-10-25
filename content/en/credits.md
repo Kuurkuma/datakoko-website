@@ -5,8 +5,6 @@ draft = false
 description = "Acknowledgments for open source tools and resources used in this website."
 +++
 
-## Website Credits
-
 This website was built using open source technologies and free resources. 
 
 We are grateful to the following projects and creators:
