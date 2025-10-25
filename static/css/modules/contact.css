@@ -330,6 +330,65 @@
     opacity: 1;
 }
 
+/* Company Social Section */
+.company-social-section {
+    background: var(--bg-white);
+    padding: var(--card-padding);
+    border-radius: var(--radius-md);
+    margin-bottom: 2rem;
+    border: var(--border-width) solid var(--border-color);
+}
+
+.company-social-section h2 {
+    font-size: 1.75rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.company-social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.company-social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: white;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-width: 120px;
+}
+
+.company-social-link:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.company-social-icon {
+    width: 48px;
+    height: 48px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.company-social-link:hover .company-social-icon {
+    opacity: 1;
+}
+
+.company-social-link span {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
 @media (max-width: 768px) {
     .partner-card {
         flex-direction: column;

@@ -5,52 +5,70 @@
                 <img src="{{ "img/favicon.svg" | relURL }}" alt="{{ .Site.Title }} logo" class="footer-logo">
                 <span class="footer-title">{{ .Site.Title }}</span>
             </div>
-            <p class="footer-tagline">{{ if eq .Language.Lang "fr" }}Infrastructure data moderne en moins de 30 jours{{ else }}Modern data infrastructure in under 30 days{{ end }}</p>
+            <p class="footer-tagline">{{ i18n "footerTagline" }}</p>
         </div>
 
         <div class="footer-section">
-            <h4>{{ if eq .Language.Lang "fr" }}Services{{ else }}Services{{ end }}</h4>
+            <h4>{{ i18n "footerServices" }}</h4>
             <ul class="footer-links">
+                {{ $current := . }}
                 {{ range (where .Site.Menus.main "Name" "Services") }}
                     {{ $servicesPage := site.GetPage .PageRef }}
                     {{ range first 3 $servicesPage.Pages }}
-                        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                        {{ $isCurrent := eq .RelPermalink $current.RelPermalink }}
+                        <li><a href="{{ .RelPermalink }}" class="{{ if $isCurrent }}active{{ end }}">{{ .Title }}</a></li>
                     {{ end }}
                 {{ end }}
             </ul>
         </div>
 
         <div class="footer-section">
-            <h4>{{ if eq .Language.Lang "fr" }}Entreprise{{ else }}Company{{ end }}</h4>
+            <h4>{{ i18n "footerCompany" }}</h4>
             <ul class="footer-links">
+                {{ $current := . }}
                 {{ range .Site.Menus.main }}
                     {{ if in (slice "Approach" "Team") .Name }}
-                        <li><a href="{{ .PageRef | relLangURL }}">{{ .Name }}</a></li>
+                        {{ $menuURL := .URL }}
+                        {{ if .Page }}
+                            {{ $menuURL = .Page.RelPermalink }}
+                        {{ end }}
+                        {{ $isCurrent := or (eq $menuURL $current.RelPermalink) (hasPrefix $current.RelPermalink $menuURL) }}
+                        <li><a href="{{ $menuURL }}" class="{{ if $isCurrent }}active{{ end }}">{{ .Name }}</a></li>
                     {{ end }}
                 {{ end }}
-                <li><a href="{{ relLangURL "contact" }}">{{ if eq .Language.Lang "fr" }}Contact{{ else }}Contact{{ end }}</a></li>
+                {{ $isContact := hasPrefix $current.RelPermalink (relLangURL "contact") }}
+                <li><a href="{{ relLangURL "contact" }}" class="{{ if $isContact }}active{{ end }}">{{ i18n "footerContact" }}</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
-            <h4>{{ if eq .Language.Lang "fr" }}Langue{{ else }}Language{{ end }}</h4>
+            <h4>{{ i18n "footerSocial" }}</h4>
             <ul class="footer-links">
-                {{ if .IsTranslated }}
-                    {{ range .Translations }}
-                        <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
-                    {{ end }}
-                {{ else }}
-                    {{ range .Site.Languages }}
-                        {{ if not (eq .Lang $.Site.Language.Lang) }}
-                            <li><a href="/{{ .Lang }}/">{{ .LanguageName }}</a></li>
-                        {{ end }}
-                    {{ end }}
-                {{ end }}
+                <li><a href="https://github.com/datakoko" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             </ul>
         </div>
-    </div>
 
-    <div class="footer-bottom">
-        <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
+        <div class="footer-section">
+            <h4>{{ i18n "footerLanguages" }}</h4>
+            <ul class="footer-links">
+                {{ $current := . }}
+                {{ range .Site.Languages }}
+                    {{ $isActive := eq .Lang $current.Language.Lang }}
+                    {{ $langURL := "/" }}
+                    {{ if ne .Lang "en" }}
+                        {{ $langURL = printf "/%s/" .Lang }}
+                    {{ end }}
+                    {{ if $current.IsTranslated }}
+                        {{ range $current.AllTranslations }}
+                            {{ if eq .Language.Lang .Lang }}
+                                {{ $langURL = .RelPermalink }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    <li><a href="{{ $langURL }}" class="{{ if $isActive }}active{{ end }}">{{ .LanguageName }}</a></li>
+                {{ end }}
+            </ul>
+            <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
+        </div>
     </div>
 </footer>

@@ -20,7 +20,7 @@ params:
   social:
     linkedin: ""
     twitter: ""
-    github: ""
+    github: "https://github.com/datakoko"
 
 caches:
   images:

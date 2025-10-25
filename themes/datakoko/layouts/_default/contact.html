@@ -1,5 +1,6 @@
 {{ define "main" }}
 <div class="contact-page">
+    {{ partial "breadcrumbs.html" . }}
     <header class="contact-header">
         <h1>{{ .Title }}</h1>
         {{ with .Params.intro }}
@@ -7,7 +8,7 @@
         {{ end }}
     </header>
 
-    
+
 
     <!-- Contact Form Section -->
     {{ $tally := site.Data.config.contact.tally_form_url }}
@@ -122,6 +123,17 @@
         {{ with .Params.response_time }}
         <p class="response-time">{{ . }}</p>
         {{ end }}
+    </section>
+
+    <!-- Company Social Section -->
+    <section class="company-social-section">
+        <h2>{{ i18n "followUs" }}</h2>
+        <div class="company-social-links">
+            <a href="https://github.com/datakoko" target="_blank" rel="noopener noreferrer" class="company-social-link">
+                <img src="{{ "img/icons/github.svg" | relURL }}" alt="GitHub" class="company-social-icon">
+                <span>GitHub</span>
+            </a>
+        </div>
     </section>
 </div>
 {{ end }}

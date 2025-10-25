@@ -10,34 +10,21 @@
         {{ range .Pages.ByWeight }}
         <article class="team-member-card">
             <a href="{{ .RelPermalink }}" class="team-member-link">
-                <div class="team-member-content">
-                    {{ $photoPath := printf "img/team/%s.jpg" .File.TranslationBaseName }}
-                    <div class="team-member-photo">
-                        <img src="{{ $photoPath | relURL }}" alt="{{ .Title }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="team-photo-placeholder" style="display:none;">
-                            <span>{{ substr .Title 0 1 }}</span>
-                        </div>
+                {{ $photoPath := printf "img/team/%s.jpg" .File.TranslationBaseName }}
+                {{ $initial := substr .Title 0 1 }}
+                <div class="team-member-photo">
+                    <img src="{{ $photoPath | relURL }}" alt="{{ .Title }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="team-photo-placeholder" style="display:none;">
+                        <span>{{ $initial }}</span>
                     </div>
+                </div>
+                <div class="team-member-content">
                     <h2>{{ .Title }}</h2>
                     {{ with .Params.role }}
                     <p class="team-member-role">{{ . }}</p>
                     {{ end }}
                     {{ with .Summary }}
                     <p class="team-member-summary">{{ . }}</p>
-                    {{ end }}
-                    {{ if or .Params.linkedin .Params.github }}
-                    <div class="team-member-social">
-                        {{ with .Params.linkedin }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="social-link-small" onclick="event.stopPropagation()" aria-label="LinkedIn Profile">
-                            <img src="{{ "img/icons/linkedin.svg" | relURL }}" alt="LinkedIn" class="social-icon-small">
-                        </a>
-                        {{ end }}
-                        {{ with .Params.github }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="social-link-small" onclick="event.stopPropagation()" aria-label="GitHub Profile">
-                            <img src="{{ "img/icons/github.svg" | relURL }}" alt="GitHub" class="social-icon-small">
-                        </a>
-                        {{ end }}
-                    </div>
                     {{ end }}
                 </div>
             </a>
@@ -82,11 +69,13 @@
 }
 
 .team-member-photo {
-    width: 100%;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
 }
 
 .team-member-photo img {
@@ -107,12 +96,12 @@
 }
 
 .team-member-content {
-    padding: 2rem;
+    padding: var(--space-5) var(--space-5) var(--space-5);
     text-align: center;
 }
 
 .team-member-content h2 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 var(--space-2) 0;
     color: var(--text-dark);
     font-size: 1.75rem;
 }
@@ -127,46 +116,8 @@
 .team-member-summary {
     color: var(--text-light);
     line-height: 1.8;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     text-align: left;
-}
-
-.team-member-social {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: var(--border-width) solid var(--border-color);
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-}
-
-.social-link-small {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: white;
-    border: var(--border-width) solid var(--border-color);
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-}
-
-.social-link-small:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.social-icon-small {
-    width: 20px;
-    height: 20px;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-
-.social-link-small:hover .social-icon-small {
-    opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -175,7 +126,8 @@
     }
 
     .team-member-photo {
-        height: 250px;
+        width: 150px;
+        height: 150px;
     }
 
     .team-photo-placeholder {

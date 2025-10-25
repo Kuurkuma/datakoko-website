@@ -65,8 +65,8 @@
 
 <!-- Tech Stack Section -->
 <section class="tech-stack-section">
-    <h2>{{ if eq .Language.Lang "fr" }}Notre Stack Technique{{else}}Our Tech Stack{{end}}</h2>
-    <p class="section-subtitle">{{ if eq .Language.Lang "fr" }}Technologies modernes et éprouvées pour votre infrastructure data{{else}}Modern, proven technologies for your data infrastructure{{end}}</p>
+    <h2>{{ i18n "techStackTitle" }}</h2>
+    <p class="section-subtitle">{{ i18n "techStackSubtitle" }}</p>
     <div class="tech-stack-grid">
         {{ range first 8 (where .Site.RegularPages "Section" "tech").ByWeight }}
         <a href="{{ .RelPermalink }}" class="tech-stack-item">

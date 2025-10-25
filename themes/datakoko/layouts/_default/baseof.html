@@ -29,7 +29,8 @@
         <meta property="og:description" content="{{ $description }}">
         <meta property="og:image" content="{{ "img/favicon.jpeg" | absURL }}">
         <meta property="og:site_name" content="{{ .Site.Title }}">
-        <meta property="og:locale" content="{{ if eq .Language.Lang "fr" }}fr_FR{{ else }}en_US{{ end }}">
+        {{ $ogLocale := dict "en" "en_US" "fr" "fr_FR" }}
+        <meta property="og:locale" content="{{ index $ogLocale .Language.Lang }}">
 
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary">
@@ -42,11 +43,13 @@
 
         <!-- Alternate Language Links -->
         {{ if .IsTranslated }}
-            {{ range .Translations }}
+            {{ range .AllTranslations }}
             <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
             {{ end }}
+            <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+        {{ else }}
+            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
         {{ end }}
-        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
 
         <link rel="stylesheet" href="{{ "css/index.css" | relURL }}">
 
