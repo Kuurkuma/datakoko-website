@@ -1,20 +1,28 @@
 /* Tech Stack Section */
 
 .tech-stack-section {
-    padding: var(--space-7) 0;
-    background-color: var(--bg-light);
+    padding: var(--space-8) var(--space-4);
+    background: transparent;
 }
 
 .tech-stack-section h2 {
     text-align: center;
     margin-bottom: var(--space-3);
     color: var(--text-dark);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .tech-stack-section .section-subtitle {
     text-align: center;
     color: var(--text-light);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-7);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
 }
 
 .tech-stack-grid {
@@ -32,20 +40,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: var(--space-4);
+    padding: var(--space-5);
     background: var(--bg-white);
     border: var(--border-width) solid var(--border-color);
-    border-radius: var(--radius-md);
-    transition: transform 0.2s, box-shadow 0.2s;
-    min-width: 120px;
+    border-radius: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 140px;
     flex: 0 0 auto;
     text-decoration: none;
     color: inherit;
 }
 
 .tech-stack-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .tech-stack-item:hover h3 {
@@ -53,10 +61,15 @@
 }
 
 .tech-stack-logo {
-    width: 60px;
-    height: 60px;
-    margin-bottom: var(--space-2);
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--space-3);
     position: relative;
+    transition: transform 0.3s ease;
+}
+
+.tech-stack-item:hover .tech-stack-logo {
+    transform: scale(1.1) rotateY(10deg);
 }
 
 .tech-stack-logo img {
@@ -83,9 +96,12 @@
 
 .tech-stack-item h3 {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text-dark);
     text-align: center;
+    transition: color 0.3s ease;
+    letter-spacing: -0.01em;
 }
 
 @media (max-width: 768px) {

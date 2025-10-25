@@ -70,7 +70,7 @@ isReducedMotion()  // Returns true if user prefers reduced motion
 
 Location: `static/js/components/data-infrastructure-scene.js`
 
-A scroll-based 3D animation representing data infrastructure concepts.
+A scroll-based 3D animation with a single evolving element that morphs through different stages, representing the journey from raw data to analytics.
 
 #### HTML Usage
 
@@ -80,38 +80,43 @@ A scroll-based 3D animation representing data infrastructure concepts.
 
 #### Features
 
-1. **Three Sections (Scroll-Based)**
-   - **Section 1**: Data Sources - Scattered cubes representing databases
-   - **Section 2**: Data Pipeline - Octahedrons with connected nodes
-   - **Section 3**: Data Warehouse - Icosahedron with orbital elements
+1. **Single Morphing Element (Three Stages)**
+   - **Stage 0 (0-33% scroll)**: Chaotic scattered particles representing raw, unorganized data sources
+   - **Stage 1 (33-66% scroll)**: Organized spherical structure representing data infrastructure
+   - **Stage 2 (66-100% scroll)**: Helical network pattern representing analytics and insights
+   - Smooth interpolation between stages based on scroll progress
+   - Central core that appears and scales with the stages
 
 2. **Interactive Effects**
-   - Scroll-driven camera movement
+   - Continuous smooth morphing tied to scroll position
    - Mouse parallax (disabled on mobile)
-   - Section entry animations with easing
-   - Continuous gentle rotation of all objects
+   - Flowing data particles that spiral around the scene
+   - Gentle rotation of all elements
 
 3. **Particle System**
-   - 300 particles on desktop, 150 on mobile
-   - Floating motion simulating data flow
-   - Slow rotation for depth effect
+   - Main structure: 200 particles on desktop, 100 on mobile
+   - Flowing data: 100 particles on desktop, 50 on mobile
+   - Real-time position interpolation for smooth morphing
+   - Spiraling motion simulating data flow
 
 4. **Theme Adaptation**
-   - Light theme: Blue (#4a9eff), Green (#00d4aa), Red (#ff6b6b)
-   - Dark theme: Brighter variants for better contrast
+   - Light theme: Blue (#4a9eff), Green (#00d4aa)
+   - Dark theme: Brighter variants for better contrast (#6bb6ff, #00ffcc)
    - Smooth color transitions when theme changes
+   - Separate colors for structure particles and flowing data
 
 5. **Mobile Optimizations**
-   - Fewer objects (3 vs 5 data sources, 2 vs 3 pipeline nodes, 4 vs 8 orbit elements)
-   - Centered positioning (no left/right offset)
+   - Reduced particle counts (100 vs 200 for structure, 50 vs 100 for flow)
    - Reduced rotation speed
-   - Larger particle size for visibility
+   - Larger particle sizes for visibility
    - Disabled parallax effect
+   - Optimized morph calculations
 
 6. **Accessibility**
    - Respects `prefers-reduced-motion` (stops animations)
    - Passive event listeners for better scroll performance
    - No pointer events (allows interaction with page content)
+   - Smooth camera movement tied to scroll
 
 ---
 

@@ -1,5 +1,8 @@
-/* Layout & Main Structure */
+data-infrastructure-scene {
+  display: none;
+}
 
+/* Layout & Main Structure */
 main {
     padding: 3rem 2rem;
     display: flex;

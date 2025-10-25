@@ -1,10 +1,16 @@
 /* Footer */
 
 footer {
-    background-color: var(--bg-white);
-    border-top: var(--border-width) solid var(--border-color);
+    --giant-title-size: 22vw;
+    position: relative;
+    z-index: 10;
+    border: 1px solid var(--border-color);
+    border-radius: 2rem;
     padding: var(--space-5) 0 var(--space-3);
     color: var(--text-light);
+    overflow: hidden;
+    margin: 1rem;
+    padding-bottom: var(--giant-title-size);
 }
 
 .footer-content {
@@ -130,4 +136,21 @@ copyright-notice {
         gap: var(--space-3);
         padding: 0 var(--space-2);
     }
+}
+
+.footer-giantTitle {
+  font-size: var(--giant-title-size);
+  overflow: hidden;
+  text-align: center;
+  background: var(--secondary-color);
+  background: linear-gradient(180deg, var(--primary-color) 5%, var(--secondary-color) 70%);
+  background-clip: text;
+  -webkit-text-fill-color: rgba(0,0,0,0);
+  text-transform: uppercase;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 5.3vh);
 }
