@@ -4,6 +4,7 @@ date = 2025-10-24T12:00:00Z
 weight = 2
 icon = "💰"
 summary = "Réduisez vos coûts cloud et d'infrastructure sans sacrifier les performances grâce à une analyse et optimisation expertes."
+description = "Optimisation des coûts d'infrastructure data : réduisez vos coûts cloud de 40-70% grâce au tuning de performance, dimensionnement optimal et migration stratégique. Analyse et implémentation experte."
 +++
 
 ## Vue d'Ensemble

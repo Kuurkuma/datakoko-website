@@ -4,6 +4,7 @@ date = 2025-10-24T12:00:00Z
 weight = 1
 icon = "🏗️"
 summary = "Construisez votre infrastructure data complète avec des technologies modernes et évolutives adaptées à vos besoins métier."
+description = "Service de développement de plateforme data sur mesure : pipelines ETL, data warehouses, DuckDB, dbt, DLT. Infrastructure data complète construite pour votre entreprise en moins de 30 jours."
 +++
 
 ## Vue d'Ensemble

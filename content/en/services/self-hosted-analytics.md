@@ -4,6 +4,7 @@ date = 2025-10-24T12:00:00Z
 weight = 3
 icon = "📊"
 summary = "Take ownership of your business intelligence with analytics platforms deployed on your own servers."
+description = "Self-hosted analytics platforms: Metabase, Superset, Grafana deployed on your infrastructure. Complete data sovereignty, unlimited users, no SaaS fees."
 +++
 
 ## Overview

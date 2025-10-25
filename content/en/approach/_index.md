@@ -1,6 +1,6 @@
 +++
 title = "Our approach"
-description = "Explore how we evaluate your needs: audit scope, process, and why timing matters."
+description = "Discover our data infrastructure development approach: free audit, custom proposals, rapid deployment, and ongoing support. Fast, transparent, and proven methodology."
 aliases = ["/evaluation/"]
 url = "/approach/"
 +++

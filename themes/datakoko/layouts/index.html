@@ -13,7 +13,7 @@
 <!-- Intro Section -->
 {{ with .Params.intro }}
 <section class="intro-section">
-    <p>{{ . | markdownify }}</p>
+    <p><strong>{{ $.Title }}.</strong> {{ . | markdownify }}</p>
 </section>
 {{ end }}
 

@@ -4,6 +4,7 @@ date = 2025-10-24T12:00:00Z
 weight = 1
 icon = "🏗️"
 summary = "Build your complete data infrastructure with modern, scalable technologies tailored to your business needs."
+description = "Custom data platform development service: ETL pipelines, data warehouses, DuckDB, dbt, DLT. Complete data infrastructure built for your business in under 30 days."
 +++
 
 ## Overview

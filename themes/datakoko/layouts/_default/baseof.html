@@ -5,8 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Primary Meta Tags -->
-        <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-        {{ $description := .Params.description | default .Site.Params.description }}
+        {{ $pageTitle := "" }}
+        {{ if .IsHome }}
+            {{ $pageTitle = printf "%s - Modern Data Infrastructure in 30 Days" .Site.Title }}
+        {{ else }}
+            {{ $pageTitle = printf "%s | %s" .Title .Site.Title }}
+        {{ end }}
+        <title>{{ $pageTitle }}</title>
+        {{ $description := .Params.description | default .Description | default .Summary | default .Site.Params.description }}
         <meta name="description" content="{{ $description }}">
         <meta name="keywords" content="{{ .Site.Params.keywords }}">
         <meta name="author" content="{{ .Site.Title }}">

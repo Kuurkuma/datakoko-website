@@ -4,6 +4,7 @@ date = 2025-10-24T12:00:00Z
 weight = 3
 icon = "📊"
 summary = "Reprenez le contrôle de votre business intelligence avec des plateformes analytiques déployées sur vos propres serveurs."
+description = "Plateformes d'analytique auto-hébergée : Metabase, Superset, Grafana déployés sur votre infrastructure. Souveraineté totale des données, utilisateurs illimités, pas de frais SaaS."
 +++
 
 ## Vue d'Ensemble

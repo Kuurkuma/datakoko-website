@@ -4,6 +4,7 @@ date = 2025-10-24T12:00:00Z
 weight = 2
 icon = "💰"
 summary = "Reduce your cloud and infrastructure costs without sacrificing performance through expert analysis and optimization."
+description = "Data infrastructure cost optimization: reduce cloud costs by 40-70% through performance tuning, right-sizing, and strategic migration. Expert analysis and implementation."
 +++
 
 ## Overview
