@@ -7,20 +7,11 @@ description = "Acknowledgments for open source tools and resources used in this 
 
 ## Website Credits
 
-This website was built using open source technologies and free resources. We are grateful to the following projects and creators:
+This website was built using open source technologies and free resources. 
 
-### Typography
+We are grateful to the following projects and creators:
 
-**Karrik** typeface by Jean-Baptiste Morizot and Lucas Le Bihan. Distributed by [velvetyne.fr](https://velvetyne.fr).
+- Site Generator: [gohugo.io](https://gohugo.io)
+- Typography: [IBM Plex®](https://www.ibm.com/plex/)
+- Design and development: [hwww.org](https://hwww.org)
 
-### Site Generator
-
-**Hugo** - The world's fastest framework for building websites. Visit [gohugo.io](https://gohugo.io).
-
-### Hosting
-
-**hwww.org** - Community-oriented web hosting service. Visit [hwww.org](https://hwww.org).
-
----
-
-We believe in supporting and crediting the open source community that makes the web a better place.
