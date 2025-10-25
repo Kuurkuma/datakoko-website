@@ -1,0 +1,92 @@
+{{ define "main" }}
+<div class="team-list-page">
+    {{ partial "breadcrumbs.html" . }}
+    <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        <p class="page-description">{{ .Content }}</p>
+    </header>
+
+    <div class="team-grid">
+        {{ range .Pages.ByWeight }}
+        <article class="team-member-card">
+            <a href="{{ .RelPermalink }}" class="team-member-link">
+                <div class="team-member-content">
+                    <h2>{{ .Title }}</h2>
+                    {{ with .Params.role }}
+                    <p class="team-member-role">{{ . }}</p>
+                    {{ end }}
+                    {{ with .Summary }}
+                    <p class="team-member-summary">{{ . }}</p>
+                    {{ end }}
+                    {{ with .Params.linkedin }}
+                    <div class="team-member-social">
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="linkedin-link" onclick="event.stopPropagation()">
+                            <span>LinkedIn →</span>
+                        </a>
+                    </div>
+                    {{ end }}
+                </div>
+            </a>
+        </article>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.team-member-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.team-member-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.team-member-content h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.team-member-role {
+    color: #7f8c8d;
+    font-weight: 600;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.team-member-summary {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.team-member-social {
+    margin-top: 1rem;
+}
+
+.linkedin-link {
+    color: #0077b5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.linkedin-link:hover {
+    text-decoration: underline;
+}
+</style>
+{{ end }}

@@ -40,9 +40,12 @@ languages:
         - name: Approach
           pageRef: /approach
           weight: 2
+        - name: Team
+          pageRef: /team
+          weight: 3
         - name: Contact
           pageRef: /contact
-          weight: 3
+          weight: 4
   fr:
     languageName: Français
     contentDir: content/fr
@@ -55,6 +58,7 @@ languages:
       process-steps: /processus-etapes/:slug/
       urgency-points: /raisons-d-agir/:slug/
       services: /services/:slug/
+      team: /equipe/:slug/
     menu:
       main:
         - name: Services
@@ -63,6 +67,9 @@ languages:
         - name: Approche
           pageRef: /approach
           weight: 2
+        - name: Équipe
+          pageRef: /team
+          weight: 3
         - name: Contact
           pageRef: /contact
-          weight: 3
+          weight: 4

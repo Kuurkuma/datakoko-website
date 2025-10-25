@@ -1,0 +1,127 @@
+{{ define "main" }}
+<article class="team-member-page">
+    {{ partial "breadcrumbs.html" . }}
+    <header class="team-member-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.role }}
+        <p class="team-member-role-title">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.linkedin }}
+        <div class="team-member-social-links">
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="linkedin-button">
+                View LinkedIn Profile →
+            </a>
+        </div>
+        {{ end }}
+    </header>
+
+    <div class="team-member-content">
+        {{ .Content }}
+    </div>
+
+    <div class="team-cta">
+        <h2>{{ i18n "readyToStart" }}</h2>
+        <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "contactUs" }}</a>
+    </div>
+
+    <nav class="team-nav">
+        {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" class="team-nav-prev">← {{ .Title }}</a>
+        {{ end }}
+        {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" class="team-nav-next">{{ .Title }} →</a>
+        {{ end }}
+    </nav>
+</article>
+
+<style>
+.team-member-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.team-member-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.team-member-header h1 {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.team-member-role-title {
+    font-size: 1.25rem;
+    color: #7f8c8d;
+    font-weight: 600;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.team-member-social-links {
+    margin-top: 1rem;
+}
+
+.linkedin-button {
+    display: inline-block;
+    background: #0077b5;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.linkedin-button:hover {
+    background: #005885;
+}
+
+.team-member-content {
+    line-height: 1.8;
+}
+
+.team-member-content h2 {
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.team-member-content ul {
+    list-style-position: inside;
+}
+
+.team-cta {
+    text-align: center;
+    margin: 4rem 0;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+}
+
+.team-cta h2 {
+    margin-top: 0;
+    color: white;
+}
+
+.team-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e1e4e8;
+}
+
+.team-nav a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.team-nav a:hover {
+    text-decoration: underline;
+}
+</style>
+{{ end }}
