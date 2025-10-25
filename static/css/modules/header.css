@@ -11,9 +11,9 @@
 
 .site-header nav {
     width: fit-content;
-    max-width: calc(100% - var(--space-5));
+    max-width: calc(100% - var(--space-4));
     margin: 0 auto;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-5);
+    gap: var(--space-3);
     position: relative;
 }
 
@@ -35,11 +35,11 @@
     text-decoration: none;
     color: var(--primary-color);
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     z-index: 201;
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-1);
 }
 
 .site-title:hover {
@@ -47,8 +47,8 @@
 }
 
 .site-title-logo {
-    width: var(--space-4);
-    height: var(--space-4);
+    width: var(--space-3);
+    height: var(--space-3);
     display: none;
 }
 
@@ -110,7 +110,7 @@
 .nav-main {
     list-style: none;
     display: flex;
-    gap: var(--space-5);
+    gap: var(--space-2);
     align-items: center;
     margin: 0;
     padding: 0;
@@ -120,9 +120,10 @@
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
+    font-size: 0.9375rem;
     transition: color 0.2s, background-color 0.2s, border-color 0.2s;
     position: relative;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-2);
     border-radius: 999px;
     border: var(--border-width) solid transparent;
 }
