@@ -1,11 +1,14 @@
 <header class="site-header">
     <nav>
         <div class="nav-left">
-            <a href="{{ .Site.Home.Permalink | relURL }}" class="site-title {{ if .IsHome }}active{{ end }}">{{ .Site.Title }}</a>
+            <a href="{{ .Site.Home.RelPermalink }}" class="site-title {{ if .IsHome }}active{{ end }}">{{ .Site.Title }}</a>
             <ul class="nav-main">
                 {{ $current := . }}
                 {{ range .Site.Menus.main }}
-                    {{ $menuURL := relLangURL .URL }}
+                    {{ $menuURL := .URL }}
+                    {{ if .Page }}
+                        {{ $menuURL = .Page.RelPermalink }}
+                    {{ end }}
                     {{ $isExact := eq $menuURL $current.RelPermalink }}
                     {{ $isMenu := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
                     {{ $isPrefix := hasPrefix $current.RelPermalink $menuURL }}

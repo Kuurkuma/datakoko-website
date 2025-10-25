@@ -31,21 +31,23 @@ languages:
     languageName: English
     contentDir: content/en
     weight: 1
+    disabled: false
     menu:
       main:
         - name: Services
-          url: /services/
+          pageRef: /services
           weight: 1
         - name: Approach
-          url: /approach/
+          pageRef: /approach
           weight: 2
         - name: Contact
-          url: /contact/
+          pageRef: /contact
           weight: 3
   fr:
     languageName: Français
     contentDir: content/fr
     weight: 2
+    disabled: false
     permalinks:
       challenges: /defis/:slug/
       benefits: /avantages/:slug/
@@ -56,11 +58,11 @@ languages:
     menu:
       main:
         - name: Services
-          url: /services/
+          pageRef: /services
           weight: 1
         - name: Approche
-          url: /approche/
+          pageRef: /approach
           weight: 2
         - name: Contact
-          url: /contact/
+          pageRef: /contact
           weight: 3
