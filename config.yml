@@ -56,11 +56,11 @@ languages:
     menu:
       main:
         - name: Services
-          url: /fr/services/
+          url: /services/
           weight: 1
         - name: Approche
-          url: /fr/approche/
+          url: /approche/
           weight: 2
         - name: Contact
-          url: /fr/contact/
+          url: /contact/
           weight: 3
