@@ -1,0 +1,62 @@
+/**
+ * WebGL Components Styles
+ * Global styles for WebGL web components
+ */
+
+/* Ensure the web component is positioned correctly */
+data-infrastructure-scene {
+    /* Position is handled by the component's shadow DOM */
+    display: block;
+}
+
+/* Ensure content is above the canvas */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Make hero content transparent so animation shows through */
+.hero {
+    position: relative;
+    background: transparent;
+}
+
+/* Ensure sections have proper spacing for scroll animation */
+body {
+    overflow-x: hidden;
+}
+
+/* Add subtle backdrop for better text readability over animation */
+.hero,
+.intro-section,
+.challenges-section,
+.approach-section,
+.services-section,
+.tech-stack-section,
+.benefits,
+.service-cta {
+    position: relative;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    /* Ensure text is readable on mobile */
+    .hero,
+    .intro-section,
+    .challenges-section,
+    .approach-section,
+    .services-section,
+    .tech-stack-section,
+    .benefits,
+    .service-cta {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(2px);
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    data-infrastructure-scene {
+        /* Component handles this internally */
+    }
+}

@@ -67,5 +67,8 @@
         </main>
         {{ partial "footer.html" . }}
         <script src="{{ "js/copyright.js" | relURL }}"></script>
+        {{ if .IsHome }}
+        <script type="module" src="{{ "js/webgl-components.js" | relURL }}"></script>
+        {{ end }}
     </body>
 </html>
