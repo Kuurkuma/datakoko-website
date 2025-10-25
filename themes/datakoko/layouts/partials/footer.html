@@ -30,6 +30,11 @@
                 {{ end }}
                 {{ $isContact := hasPrefix $current.RelPermalink (relLangURL "contact") }}
                 <li><a href="{{ relLangURL "contact" }}" class="{{ if $isContact }}active{{ end }}">{{ i18n "footerContact" }}</a></li>
+                {{ $creditsPage := site.GetPage "credits" }}
+                {{ if $creditsPage }}
+                    {{ $isCurrent := or (eq $creditsPage.RelPermalink $current.RelPermalink) (hasPrefix $current.RelPermalink $creditsPage.RelPermalink) }}
+                    <li><a href="{{ $creditsPage.RelPermalink }}" class="{{ if $isCurrent }}active{{ end }}">{{ i18n "footerCredits" }}</a></li>
+                {{ end }}
             </ul>
         </div>
 
