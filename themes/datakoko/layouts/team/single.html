@@ -34,7 +34,6 @@
     </div>
 
     <div class="team-cta">
-        <h2>{{ i18n "readyToStart" }}</h2>
         <a href="{{ relLangURL "contact" }}" class="cta-button">{{ i18n "contactUs" }}</a>
     </div>
 
@@ -115,22 +114,21 @@
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    background: var(--bg-white);
+    background: white;
     border: 1px solid var(--border-color);
-    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
 }
 
 .social-link:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--bg-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .social-icon {
     width: 24px;
     height: 24px;
-    opacity: 0.7;
+    opacity: 0.8;
     transition: opacity 0.2s;
 }
 
@@ -154,16 +152,8 @@
 
 .team-cta {
     text-align: center;
-    margin: 4rem 0;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: 8px;
-}
-
-.team-cta h2 {
-    margin-top: 0;
-    color: white;
+    margin: 3rem 0;
+    padding: 0;
 }
 
 .team-nav {

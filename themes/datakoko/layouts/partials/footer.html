@@ -1,20 +1,56 @@
 <footer>
-    <div class="footer-bar">
-        <div class="footer-left">
-            <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
+    <div class="footer-content">
+        <div class="footer-section footer-brand">
+            <div class="footer-logo-wrapper">
+                <img src="{{ "img/favicon.svg" | relURL }}" alt="{{ .Site.Title }} logo" class="footer-logo">
+                <span class="footer-title">{{ .Site.Title }}</span>
+            </div>
+            <p class="footer-tagline">{{ if eq .Language.Lang "fr" }}Infrastructure data moderne en moins de 30 jours{{ else }}Modern data infrastructure in under 30 days{{ end }}</p>
         </div>
-        <ul class="footer-right">
-            {{ if .IsTranslated }}
-                {{ range .Translations }}
-                    <li><a href="{{ .Permalink }}">🌐 {{ .Language.LanguageName }}</a></li>
-                {{ end }}
-            {{ else }}
-                {{ range .Site.Languages }}
-                    {{ if not (eq .Lang $.Site.Language.Lang) }}
-                        <li><a href="/{{ .Lang }}/">🌐 {{ .LanguageName }}</a></li>
+
+        <div class="footer-section">
+            <h4>{{ if eq .Language.Lang "fr" }}Services{{ else }}Services{{ end }}</h4>
+            <ul class="footer-links">
+                {{ range (where .Site.Menus.main "Name" "Services") }}
+                    {{ $servicesPage := site.GetPage .PageRef }}
+                    {{ range first 3 $servicesPage.Pages }}
+                        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
                     {{ end }}
                 {{ end }}
-            {{ end }}
-        </ul>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>{{ if eq .Language.Lang "fr" }}Entreprise{{ else }}Company{{ end }}</h4>
+            <ul class="footer-links">
+                {{ range .Site.Menus.main }}
+                    {{ if in (slice "Approach" "Team") .Name }}
+                        <li><a href="{{ .PageRef | relLangURL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                {{ end }}
+                <li><a href="{{ relLangURL "contact" }}">{{ if eq .Language.Lang "fr" }}Contact{{ else }}Contact{{ end }}</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>{{ if eq .Language.Lang "fr" }}Langue{{ else }}Language{{ end }}</h4>
+            <ul class="footer-links">
+                {{ if .IsTranslated }}
+                    {{ range .Translations }}
+                        <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                    {{ end }}
+                {{ else }}
+                    {{ range .Site.Languages }}
+                        {{ if not (eq .Lang $.Site.Language.Lang) }}
+                            <li><a href="/{{ .Lang }}/">{{ .LanguageName }}</a></li>
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
     </div>
 </footer>

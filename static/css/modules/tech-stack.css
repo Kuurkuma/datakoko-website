@@ -39,11 +39,17 @@
     transition: transform 0.2s, box-shadow 0.2s;
     min-width: 120px;
     flex: 0 0 auto;
+    text-decoration: none;
+    color: inherit;
 }
 
 .tech-stack-item:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+}
+
+.tech-stack-item:hover h3 {
+    color: var(--primary-color);
 }
 
 .tech-stack-logo {

@@ -118,7 +118,7 @@ section {
 
 .service-content h3 {
     font-size: 1.375rem;
-    color: var(--primary-color);
+    color: var(--text-dark);
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
 }

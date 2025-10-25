@@ -32,18 +32,49 @@
           } catch(e) {}
         })();
         // Simple loader: fade in iframe when loaded, hide spinner
-        (function(){
+        document.addEventListener('DOMContentLoaded', function(){
           var wrapper = document.querySelector('.embed-wrapper');
           var iframe = wrapper && wrapper.querySelector('iframe');
           if (!wrapper || !iframe) return;
-          function markLoaded(){ wrapper.classList.add('loaded'); }
+
+          function markLoaded(){
+            wrapper.classList.add('loaded');
+          }
+
+          // Listen for load event
           iframe.addEventListener('load', markLoaded, { once: true });
-          // Fallback: in case embed script swaps the iframe, poll briefly
-          var tries = 0, iv = setInterval(function(){
-            if (!wrapper) return clearInterval(iv);
-            var ifr = wrapper.querySelector('iframe');
-            if (ifr && ifr.complete) { markLoaded(); clearInterval(iv); }
-            if (++tries > 40) clearInterval(iv); // ~2s max
+
+          // Fallback: poll briefly for Tally's dynamic iframe loading
+          var tries = 0;
+          var checkInterval = setInterval(function(){
+            if (!wrapper) {
+              clearInterval(checkInterval);
+              return;
+            }
+
+            var currentIframe = wrapper.querySelector('iframe');
+            if (currentIframe && currentIframe.contentDocument) {
+              try {
+                // Check if iframe has loaded content
+                if (currentIframe.contentDocument.readyState === 'complete') {
+                  markLoaded();
+                  clearInterval(checkInterval);
+                }
+              } catch(e) {
+                // Cross-origin, assume loaded after a few tries
+                if (tries > 10) {
+                  markLoaded();
+                  clearInterval(checkInterval);
+                }
+              }
+            }
+
+            tries++;
+            if (tries > 60) {
+              // 3 seconds max, mark as loaded anyway
+              markLoaded();
+              clearInterval(checkInterval);
+            }
           }, 50);
         })();
         </script>
