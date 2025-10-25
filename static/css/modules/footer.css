@@ -12,7 +12,7 @@ footer {
     margin: 0 auto;
     padding: 0 2rem;
     display: grid;
-    grid-template-columns: 2fr repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr) 2fr;
     gap: var(--space-6);
     margin-bottom: var(--space-6);
 }
