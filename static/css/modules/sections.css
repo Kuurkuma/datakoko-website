@@ -55,11 +55,11 @@
 }
 
 .challenge-item {
-     padding: var(--space-6);
+    padding: var(--space-6);
     border-radius: 1.25rem;
     border: var(--border-width) solid var(--border-color);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--bg-light);
 }
 
 .challenge-icon {

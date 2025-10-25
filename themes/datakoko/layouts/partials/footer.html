@@ -1,5 +1,22 @@
 <footer>
     <div class="footer-content">
+      <div class="footer-section">
+            <div class="footer-logo-wrapper">
+                <img src="{{ "img/favicon.svg" | relURL }}" alt="{{ .Site.Title }} logo" class="footer-logo">
+                <span class="footer-title">{{ .Site.Title }}</span>
+            </div>
+            <p class="footer-tagline">{{ i18n "footerTagline" }}</p>
+            <p>
+              <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
+              {{ $current := . }}
+              {{ $creditsPage := site.GetPage "credits" }}
+              {{ if $creditsPage }}
+              {{ $isCurrent := or (eq $creditsPage.RelPermalink $current.RelPermalink) (hasPrefix $current.RelPermalink $creditsPage.RelPermalink) }}
+              <a href="{{ $creditsPage.RelPermalink }}" class="credits {{ if $isCurrent }}active{{ end }}">({{ i18n "footerCredits" }})</a>
+              {{ end }}
+            </p>
+        </div>
+
         <div class="footer-section">
             <h4>{{ i18n "footerServices" }}</h4>
             <ul class="footer-links">
@@ -60,22 +77,6 @@
                     <li><a href="{{ $langURL }}" class="{{ if $isActive }}active{{ end }}">{{ .LanguageName }}</a></li>
                 {{ end }}
             </ul>
-        </div>
-
-        <div class="footer-section footer-brand">
-            <div class="footer-logo-wrapper">
-                <img src="{{ "img/favicon.svg" | relURL }}" alt="{{ .Site.Title }} logo" class="footer-logo">
-                <span class="footer-title">{{ .Site.Title }}</span>
-            </div>
-            <p class="footer-tagline">{{ i18n "footerTagline" }}</p>
-            <p>
-              <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
-              {{ $creditsPage := site.GetPage "credits" }}
-              {{ if $creditsPage }}
-              {{ $isCurrent := or (eq $creditsPage.RelPermalink $current.RelPermalink) (hasPrefix $current.RelPermalink $creditsPage.RelPermalink) }}
-              <a href="{{ $creditsPage.RelPermalink }}" class="credits {{ if $isCurrent }}active{{ end }}">({{ i18n "footerCredits" }})</a>
-              {{ end }}
-            </p>
         </div>
     </div>
     <aside class="footer-giantTitle">

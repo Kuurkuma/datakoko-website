@@ -1,5 +1,6 @@
 data-infrastructure-scene {
   display: none;
+  z-index: -1;
 }
 
 /* Layout & Main Structure */
