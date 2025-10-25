@@ -3,18 +3,17 @@
 footer {
     background-color: var(--bg-white);
     border-top: var(--border-width) solid var(--border-color);
-    padding: var(--space-7) 0 var(--space-4);
+    padding: var(--space-5) 0 var(--space-3);
     color: var(--text-light);
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--space-4);
     display: grid;
     grid-template-columns: repeat(4, 1fr) 2fr;
-    gap: var(--space-6);
-    margin-bottom: var(--space-6);
+    gap: var(--space-4);
 }
 
 .footer-section h4 {
@@ -22,7 +21,8 @@ footer {
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
 }
 
 .footer-brand {
@@ -32,13 +32,13 @@ footer {
 .footer-logo-wrapper {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: var(--space-3);
+    gap: var(--space-1);
+    margin-bottom: var(--space-2);
 }
 
 .footer-logo {
-    width: 28px;
-    height: 28px;
+    width: var(--space-4);
+    height: var(--space-4);
 }
 
 .footer-title {
@@ -51,7 +51,7 @@ copyright-notice {
     display: block;
     font-size: 0.75rem;
     color: var(--text-light);
-    margin-top: var(--space-4);
+    margin-top: var(--space-2);
 }
 
 .footer-tagline {
@@ -67,7 +67,7 @@ copyright-notice {
 }
 
 .footer-links li {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
 }
 
 .footer-links a {
@@ -89,7 +89,7 @@ copyright-notice {
 @media (max-width: 968px) {
     .footer-content {
         grid-template-columns: 1fr 1fr 1fr;
-        gap: var(--space-5);
+        gap: var(--space-4);
     }
 
     .footer-brand {
@@ -99,24 +99,30 @@ copyright-notice {
 }
 
 @media (max-width: 768px) {
+    footer {
+        padding: var(--space-4) 0 var(--space-3);
+    }
+
     .footer-content {
         grid-template-columns: 1fr 1fr;
-        gap: var(--space-5);
-        padding: 0 1rem;
+        gap: var(--space-3);
+        padding: 0 var(--space-3);
     }
 
     .footer-brand {
         grid-column: 1 / -1;
         max-width: 100%;
     }
-
-    .footer-bottom {
-        padding: var(--space-4) 1rem 0;
-    }
 }
 
 @media (max-width: 480px) {
+    footer {
+        padding: var(--space-3) 0 var(--space-2);
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
+        gap: var(--space-3);
+        padding: 0 var(--space-2);
     }
 }
