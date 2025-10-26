@@ -98,9 +98,9 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         this.createHeroNetwork();
 
         // Create additional scroll-triggered scenes
-        this.createApproachFlow();       // Section 1: Approach - Methodology Flow
-        this.createServicesModules();    // Section 2: Services - Service Blocks
-        this.createTechStack();          // Section 3: Tech Stack - Technology Layers
+        // this.createApproachFlow();       // Section 1: Approach - Methodology Flow
+        // this.createServicesModules();    // Section 2: Services - Service Blocks
+        // this.createTechStack();          // Section 3: Tech Stack - Technology Layers
 
         // Create particles that persist throughout scroll
         this.createParticles(currentColors);
@@ -204,7 +204,7 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
 
         // Add orbital rings for visual interest
         if (!this.isMobile()) {
-            const ringGeometry = new THREE.TorusGeometry(1.5, 0.02, 8, 32);
+            const ringGeometry = new THREE.TorusGeometry(1, 0.02, 8, 32);
             const ring1 = new THREE.Mesh(ringGeometry, this.materials.secondary);
             ring1.rotation.x = Math.PI / 2;
             ring1.userData.isRing = true;

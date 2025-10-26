@@ -46,9 +46,9 @@ body.homepage .benefit-item {
 /* Intro Section - full-screen hero with 3D background */
 .intro-section {
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     text-align: center;
     padding: var(--space-8) var(--space-4);
@@ -82,16 +82,6 @@ body.homepage .benefit-item {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     max-width: 1000px;
     margin: 0 auto;
-}
-
-.intro-section strong {
-    font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    display: inline-block;
 }
 
 @media (max-width: 48rem) {
