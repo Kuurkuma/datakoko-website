@@ -23,11 +23,9 @@
         <script>
         (function(){
           try {
-            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             var el = document.querySelector('.contact-form-section iframe');
             if (!el) return;
             var u = new URL(el.getAttribute('data-tally-src'), window.location.href);
-            u.searchParams.set('theme', prefersDark ? 'dark' : 'light');
             el.setAttribute('data-tally-src', u.toString());
             if (window.Tally && window.Tally.loadEmbeds) { window.Tally.loadEmbeds(); }
           } catch(e) {}

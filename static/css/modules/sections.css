@@ -298,9 +298,9 @@ body.homepage .benefit-item {
     background: var(--bg-glass);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: var(--space-8);
+    padding: var(--space-4);
     border-radius: var(--radius-xl);
-    margin: var(--space-8) var(--space-4);
+    margin: var(--space-4);
     border: 1px solid var(--bg-glass-border);
     box-shadow: var(--shadow-lg);
     will-change: transform;
@@ -330,7 +330,6 @@ body.homepage .benefit-item {
 
 .benefit-item {
     text-align: center;
-    padding: var(--space-5);
     background: transparent;
     border: none;
     transition: transform 0.3s ease;
