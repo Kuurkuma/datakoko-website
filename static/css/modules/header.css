@@ -44,13 +44,16 @@
 
 .site-title {
     text-decoration: none;
-    color: var(--primary-color);
     font-weight: 700;
     font-size: 1rem;
     z-index: 201;
     display: flex;
     align-items: center;
     gap: var(--space-1);
+    color: var(--text-dark);
+}
+.site-title.active {
+    color: var(--primary-color);
 }
 
 .site-title:hover {
