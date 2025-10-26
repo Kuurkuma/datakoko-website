@@ -69,6 +69,8 @@
             {{ block "main" . }}{{ end }}
         </main>
         {{ partial "footer.html" . }}
+        <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+        <script src="{{ "js/footer-animation.js" | relURL }}"></script>
         <script src="{{ "js/copyright.js" | relURL }}"></script>
         {{ if .IsHome }}
         <script type="module" src="{{ "js/webgl-components.js" | relURL }}"></script>

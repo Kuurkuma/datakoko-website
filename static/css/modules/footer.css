@@ -152,5 +152,8 @@ copyright-notice {
   pointer-events: none;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 5.3vh);
+  bottom: 0;
+  transform: translate(-50%, 0%) translate3d(0, 100px, 0);
+  opacity: 0;
+  will-change: transform, opacity;
 }
