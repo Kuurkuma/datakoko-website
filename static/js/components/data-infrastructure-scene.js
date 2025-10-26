@@ -97,11 +97,6 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         // Create hero animation for intro
         this.createHeroNetwork();
 
-        // Create additional scroll-triggered scenes
-        // this.createApproachFlow();       // Section 1: Approach - Methodology Flow
-        // this.createServicesModules();    // Section 2: Services - Service Blocks
-        // this.createTechStack();          // Section 3: Tech Stack - Technology Layers
-
         // Create particles that persist throughout scroll
         this.createParticles(currentColors);
 
@@ -153,14 +148,14 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         const nodeCount = this.isMobile() ? 6 : 8;
 
         // Central data hub (larger, rotating polyhedron with glow)
-        const hubGeometry = new THREE.IcosahedronGeometry(0.6, 1);
+        const hubGeometry = new THREE.IcosahedronGeometry(0.2, 1);
         const hub = new THREE.Mesh(hubGeometry, this.materials.accent);
         hub.userData.isWarehouse = true;
         group.add(hub);
 
         // Add inner core for depth
         const innerCore = new THREE.Mesh(
-            new THREE.IcosahedronGeometry(0.4, 0),
+            new THREE.IcosahedronGeometry(0.3, 0),
             this.materials.primary
         );
         innerCore.userData.isCore = true;
@@ -168,13 +163,13 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
 
         // Outer ring of data nodes with varied positioning
         for (let i = 0; i < nodeCount; i++) {
-            const angle = (i / nodeCount) * Math.PI * 2;
-            const radius = this.isMobile() ? 1.8 : 2.2;
+            const angle = (i / nodeCount) * Math.PI * 1.2;
+            const radius = this.isMobile() ? 1.2 : 1.8;
             const heightOffset = Math.sin(i * Math.PI / nodeCount) * 0.4;
 
             // Data source node (octahedrons for visual variety)
             const source = new THREE.Mesh(
-                new THREE.OctahedronGeometry(0.3, 0),
+                new THREE.OctahedronGeometry(0.1, 0),
                 this.materials.primary
             );
             source.position.x = Math.cos(angle) * radius;
@@ -188,7 +183,7 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
             // Multiple data packets per connection for richer animation
             for (let p = 0; p < 2; p++) {
                 const packet = new THREE.Mesh(
-                    new THREE.SphereGeometry(0.1, 8, 8),
+                    new THREE.SphereGeometry(0.05, 8, 8),
                     p === 0 ? this.materials.secondary : this.materials.accent
                 );
                 packet.userData.sourceIndex = i;
@@ -204,9 +199,9 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
 
         // Add orbital rings for visual interest
         if (!this.isMobile()) {
-            const ringGeometry = new THREE.TorusGeometry(1, 0.02, 8, 32);
+            const ringGeometry = new THREE.TorusGeometry(1, 0.02, 32, 32);
             const ring1 = new THREE.Mesh(ringGeometry, this.materials.secondary);
-            ring1.rotation.x = Math.PI / 2;
+            ring1.rotation.x = Math.PI / 1.3;
             ring1.userData.isRing = true;
             ring1.userData.ringIndex = 0;
             group.add(ring1);
@@ -226,313 +221,8 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         this.sectionMeshes.push(group);
     }
 
-    // Section 1: Solutions - Fragmented Data Sources Unifying
-    createSolutionsViz() {
-        const group = new THREE.Group();
-        const fragmentCount = this.isMobile() ? 6 : 9;
-
-        // Central unified database
-        const unifiedDB = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.6, 0.6, 0.4, 8),
-            this.materials.primary
-        );
-        unifiedDB.rotation.x = Math.PI / 2;
-        unifiedDB.userData.isCore = true;
-        group.add(unifiedDB);
-
-        // Fragmented data sources
-        for (let i = 0; i < fragmentCount; i++) {
-            // Random shapes representing different data sources
-            const shapes = [
-                new THREE.BoxGeometry(0.25, 0.25, 0.25),
-                new THREE.TetrahedronGeometry(0.2, 0),
-                new THREE.OctahedronGeometry(0.2, 0),
-            ];
-            const shape = shapes[i % shapes.length];
-
-            const fragment = new THREE.Mesh(shape, this.materials.secondary);
-
-            // Scattered initial positions
-            const scatteredRadius = this.isMobile() ? 2 : 2.5;
-            const scatteredAngle = (i / fragmentCount) * Math.PI * 2 + Math.random() * 0.5;
-            fragment.userData.scatteredX = Math.cos(scatteredAngle) * scatteredRadius;
-            fragment.userData.scatteredY = (Math.random() - 0.5) * 1.2;
-            fragment.userData.scatteredZ = Math.sin(scatteredAngle) * scatteredRadius;
-
-            // Unified positions (closer to center, in rings)
-            const ringRadius = 0.9;
-            const unifiedAngle = (i / fragmentCount) * Math.PI * 2;
-            fragment.userData.unifiedX = Math.cos(unifiedAngle) * ringRadius;
-            fragment.userData.unifiedY = Math.sin(i * 0.7) * 0.15;
-            fragment.userData.unifiedZ = Math.sin(unifiedAngle) * ringRadius;
-
-            fragment.position.x = fragment.userData.scatteredX;
-            fragment.position.y = fragment.userData.scatteredY;
-            fragment.position.z = fragment.userData.scatteredZ;
-
-            fragment.userData.fragmentIndex = i;
-            group.add(fragment);
-        }
-
-        group.position.x = this.isMobile() ? 0 : -2;
-        group.position.y = -this.objectsDistance * 1;
-        this.scene.add(group);
-        this.sectionMeshes.push(group);
-    }
-
-    // Section 2: Approach - Data Transformation Pipeline
-    createApproachFlow() {
-        const group = new THREE.Group();
-        const stages = this.isMobile() ? 3 : 4;
-
-        // Pipeline stages with increasing refinement
-        for (let i = 0; i < stages; i++) {
-            const progress = i / (stages - 1);
-
-            // Stage container - evolves from raw to refined
-            const stage = new THREE.Mesh(
-                // Start with rough geometry, end with refined
-                i === 0 ? new THREE.BoxGeometry(0.5, 0.5, 0.5) :
-                i === stages - 1 ? new THREE.IcosahedronGeometry(0.35, 1) :
-                new THREE.OctahedronGeometry(0.35, 0),
-                this.materials.primary
-            );
-
-            stage.position.x = (i - stages / 2) * 1.2;
-            stage.userData.stageIndex = i;
-            stage.userData.baseX = stage.position.x;
-            group.add(stage);
-
-            // Transformation particles flowing between stages
-            if (i < stages - 1) {
-                for (let p = 0; p < 3; p++) {
-                    const particle = new THREE.Mesh(
-                        new THREE.SphereGeometry(0.08, 8, 8),
-                        this.materials.secondary
-                    );
-                    particle.userData.fromStage = i;
-                    particle.userData.toStage = i + 1;
-                    particle.userData.particleIndex = p;
-                    group.add(particle);
-                }
-            }
-        }
-
-        group.position.x = this.isMobile() ? 0 : 1.5;
-        group.position.y = -this.objectsDistance * 1;
-        this.scene.add(group);
-        this.sectionMeshes.push(group);
-    }
-
-    // Section 3: Services - Interconnected Service Ecosystem
-    createServicesModules() {
-        const group = new THREE.Group();
-        const moduleCount = this.isMobile() ? 4 : 6;
-
-        // Central integration hub
-        const hub = new THREE.Mesh(
-            new THREE.SphereGeometry(0.3, 16, 16),
-            this.materials.accent
-        );
-        hub.userData.isHub = true;
-        group.add(hub);
-
-        // Service modules orbiting the hub
-        for (let i = 0; i < moduleCount; i++) {
-            const angle = (i / moduleCount) * Math.PI * 2;
-            const radius = this.isMobile() ? 1.1 : 1.3;
-
-            // Service module
-            const module = new THREE.Mesh(
-                new THREE.BoxGeometry(0.4, 0.4, 0.4),
-                this.materials.secondary
-            );
-
-            module.position.x = Math.cos(angle) * radius;
-            module.position.z = Math.sin(angle) * radius;
-            module.userData.angle = angle;
-            module.userData.radius = radius;
-            module.userData.moduleIndex = i;
-
-            // Connection indicator (small sphere that shows data exchange)
-            const connector = new THREE.Mesh(
-                new THREE.SphereGeometry(0.06, 8, 8),
-                this.materials.primary
-            );
-            connector.userData.moduleIndex = i;
-            connector.userData.isConnector = true;
-
-            group.add(module);
-            group.add(connector);
-        }
-
-        group.position.x = this.isMobile() ? 0 : -1.5;
-        group.position.y = -this.objectsDistance * 2;
-        this.scene.add(group);
-        this.sectionMeshes.push(group);
-    }
-
-    // Section 4: Tech Stack - Crystalline Lattice Structure
-    createTechStack() {
-        const group = new THREE.Group();
-        const gridSize = this.isMobile() ? 3 : 4;
-
-        // Create a 3D crystal lattice representing interconnected technologies
-        for (let x = 0; x < gridSize; x++) {
-            for (let y = 0; y < gridSize; y++) {
-                for (let z = 0; z < gridSize; z++) {
-                    // Skip some positions for visual variety
-                    if ((x + y + z) % 2 === 0) continue;
-
-                    const node = new THREE.Mesh(
-                        new THREE.OctahedronGeometry(0.15, 0),
-                        // Alternate materials for visual interest
-                        (x + y + z) % 3 === 0 ? this.materials.accent :
-                        (x + y + z) % 3 === 1 ? this.materials.primary :
-                        this.materials.secondary
-                    );
-
-                    const spacing = 0.6;
-                    node.position.x = (x - gridSize / 2) * spacing;
-                    node.position.y = (y - gridSize / 2) * spacing;
-                    node.position.z = (z - gridSize / 2) * spacing;
-
-                    node.userData.gridPos = { x, y, z };
-                    node.userData.basePos = node.position.clone();
-                    node.userData.isNode = true;
-
-                    group.add(node);
-                }
-            }
-        }
-
-        // Add connecting beams between adjacent nodes
-        if (!this.isMobile()) {
-            group.children.forEach((node1, i) => {
-                if (!node1.userData.isNode) return;
-
-                group.children.forEach((node2, j) => {
-                    if (i >= j || !node2.userData.isNode) return;
-
-                    const dist = node1.position.distanceTo(node2.position);
-                    if (dist > 0.5 && dist < 0.7) {
-                        const dir = new THREE.Vector3().subVectors(node2.position, node1.position);
-                        const length = dir.length();
-
-                        const beam = new THREE.Mesh(
-                            new THREE.CylinderGeometry(0.02, 0.02, length, 4),
-                            this.materials.primary
-                        );
-
-                        beam.position.copy(node1.position).add(dir.multiplyScalar(0.5));
-                        beam.quaternion.setFromUnitVectors(
-                            new THREE.Vector3(0, 1, 0),
-                            dir.normalize()
-                        );
-
-                        beam.userData.isBeam = true;
-                        group.add(beam);
-                    }
-                });
-            });
-        }
-
-        group.position.x = this.isMobile() ? 0 : 1.5;
-        group.position.y = -this.objectsDistance * 3;
-        this.scene.add(group);
-        this.sectionMeshes.push(group);
-    }
-
-    // Section 5: Benefits - Performance Metrics Improvement
-    createBenefitsGrowth() {
-        const group = new THREE.Group();
-        const metrics = this.isMobile() ? 4 : 6;
-
-        // Before/After comparison showing improvement
-        for (let i = 0; i < metrics; i++) {
-            const xPos = (i - metrics / 2) * 0.5;
-
-            // "Before" state (smaller, dimmer)
-            const before = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.12, 0.12, 0.3, 8),
-                this.materials.secondary
-            );
-            before.position.x = xPos;
-            before.position.y = -0.3;
-            before.userData.isBefore = true;
-            before.userData.metricIndex = i;
-            group.add(before);
-
-            // "After" state (taller, brighter)
-            const targetHeight = 0.5 + i * 0.12;
-            const after = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.12, 0.12, targetHeight, 8),
-                this.materials.accent
-            );
-            after.position.x = xPos;
-            after.position.y = targetHeight / 2 - 0.3;
-            after.userData.isAfter = true;
-            after.userData.metricIndex = i;
-            after.userData.targetHeight = targetHeight;
-            after.scale.y = 0.01; // Start small
-            group.add(after);
-
-            // Improvement indicator (rises from before to after)
-            const indicator = new THREE.Mesh(
-                new THREE.SphereGeometry(0.08, 8, 8),
-                this.materials.primary
-            );
-            indicator.userData.metricIndex = i;
-            indicator.userData.isIndicator = true;
-            group.add(indicator);
-        }
-
-        group.position.x = this.isMobile() ? 0 : -2;
-        group.position.y = -this.objectsDistance * 5;
-        this.scene.add(group);
-        this.sectionMeshes.push(group);
-    }
-
-    // Section 6: Footer CTA - Accelerating Forward
-    createCTAMomentum() {
-        const group = new THREE.Group();
-        const layerCount = this.isMobile() ? 4 : 6;
-
-        // Cascading arrows showing acceleration
-        for (let i = 0; i < layerCount; i++) {
-            const arrow = new THREE.Mesh(
-                new THREE.ConeGeometry(0.15 + i * 0.03, 0.5, 3),
-                this.materials.accent
-            );
-            arrow.rotation.z = -Math.PI / 2;
-            arrow.rotation.y = Math.PI / 2;
-
-            arrow.position.x = (i - layerCount / 2) * 0.4;
-            arrow.position.z = -i * 0.15; // Stack depth
-            arrow.userData.layerIndex = i;
-            arrow.userData.baseZ = arrow.position.z;
-            group.add(arrow);
-
-            // Motion trails
-            if (i % 2 === 0) {
-                const trail = new THREE.Mesh(
-                    new THREE.SphereGeometry(0.06, 8, 8),
-                    this.materials.primary
-                );
-                trail.userData.arrowIndex = i;
-                trail.userData.isTrail = true;
-                group.add(trail);
-            }
-        }
-
-        group.position.x = this.isMobile() ? 0 : 2;
-        group.position.y = -this.objectsDistance * 6;
-        this.scene.add(group);
-        this.sectionMeshes.push(group);
-    }
-
     createParticles(colors) {
-        const particlesCount = this.isMobile() ? 200 : 400;
+        const particlesCount = this.isMobile() ? 500 : 800;
         const positions = new Float32Array(particlesCount * 3);
 
         // Spread particles throughout entire scroll height
