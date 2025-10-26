@@ -95,13 +95,13 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         this.createLights(currentColors);
 
         // Create scene objects for each homepage section
-        this.createHeroNetwork();        // Section 0: Hero - Infrastructure Network
-        this.createSolutionsViz();       // Section 1: Solutions - Organizing Chaos
-        this.createApproachFlow();       // Section 2: Approach - Methodology Flow
-        this.createServicesModules();    // Section 3: Services - Service Blocks
-        this.createTechStack();          // Section 4: Tech Stack - Technology Layers
-        this.createBenefitsGrowth();     // Section 5: Benefits - Growth Visualization
-        this.createCTAMomentum();        // Section 6: Footer CTA - Forward Momentum
+        // this.createHeroNetwork();        // Section 0: Hero - Infrastructure Network
+        // this.createSolutionsViz();       // Section 1: Solutions - Organizing Chaos
+        // this.createApproachFlow();       // Section 2: Approach - Methodology Flow
+        // this.createServicesModules();    // Section 3: Services - Service Blocks
+        // this.createTechStack();          // Section 4: Tech Stack - Technology Layers
+        // this.createBenefitsGrowth();     // Section 5: Benefits - Growth Visualization
+        // this.createCTAMomentum();        // Section 6: Footer CTA - Forward Momentum
 
         // Create particles
         this.createParticles(currentColors);
