@@ -28,11 +28,17 @@
 
 /* Dark theme header */
 @media (prefers-color-scheme: dark) {
-    .site-header nav {
+    :root:not([data-theme="light"]) .site-header nav {
         background: rgba(0, 0, 0, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
+}
+
+[data-theme="dark"] .site-header nav {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -198,9 +204,13 @@ body.menu-open {
     }
 
     @media (prefers-color-scheme: dark) {
-        .nav-menu {
+        :root:not([data-theme="light"]) .nav-menu {
             background: rgba(0, 0, 0, 0.3);
         }
+    }
+
+    [data-theme="dark"] .nav-menu {
+        background: rgba(0, 0, 0, 0.3);
     }
 
     .nav-menu.active {
@@ -249,3 +259,4 @@ body.menu-open {
         padding: var(--space-3);
     }
 }
+

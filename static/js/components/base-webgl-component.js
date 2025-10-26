@@ -67,6 +67,7 @@ export class BaseWebGLComponent extends HTMLElement {
                     height: 100vh;
                     pointer-events: none;
                     z-index: 0;
+                    opacity: 0;
                 }
 
                 canvas {

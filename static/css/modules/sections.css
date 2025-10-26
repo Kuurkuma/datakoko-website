@@ -1,5 +1,48 @@
 /* Homepage Sections */
 
+/* Increased spacing between sections */
+.solutions-section,
+.approach-section,
+.services-section,
+.benefits,
+.service-cta {
+    margin-top: calc(var(--space-8) * 2);
+    margin-bottom: calc(var(--space-8) * 2);
+}
+
+.intro-section {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+/* Initial animation states - prevent broken appearance */
+/* Only hide scroll-triggered elements on homepage, not hero which is immediately visible */
+body.homepage .intro-section,
+body.homepage .solutions-section h2,
+body.homepage .solutions-section .section-subtitle,
+body.homepage .approach-section h2,
+body.homepage .approach-section .approach-text,
+body.homepage .approach-section .feature-link,
+body.homepage .services-section h2,
+body.homepage .benefits h2,
+body.homepage .service-cta h2,
+body.homepage .service-cta .cta-button,
+body.homepage .solution-item,
+body.homepage .feature,
+body.homepage .benefit-item {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* Prevent layout shift during animation */
+.solutions-section,
+.approach-section,
+.services-section,
+.benefits,
+.service-cta {
+    min-height: 200px;
+}
+
 /* Intro Section */
 .intro-section {
     max-width: 900px;
@@ -15,13 +58,13 @@
     font-weight: 400;
 }
 
-/* Challenges Section */
-.challenges-section {
+/* Solutions Section (formerly Challenges) */
+.solutions-section {
     margin: var(--space-8) 0;
     padding: 0 var(--space-4);
 }
 
-.challenges-section h2 {
+.solutions-section h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-dark);
@@ -41,7 +84,7 @@
     line-height: 1.7;
 }
 
-.challenges-grid {
+.solutions-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -49,27 +92,36 @@
     margin: var(--space-5) 0;
 }
 
-.challenges-grid > .challenge-item {
+.solutions-grid > .solution-item {
     flex: 1 1 18rem;
     max-width: 22rem;
 }
 
-.challenge-item {
+.solution-item {
     padding: var(--space-6);
-    border-radius: 1.25rem;
+    border-radius: var(--radius-xl);
     border: var(--border-width) solid var(--border-color);
     text-align: center;
-    background-color: var(--bg-light);
+    background: var(--bg-white);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    will-change: transform;
 }
 
-.challenge-icon {
+.solution-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.solution-icon {
     font-size: 3rem;
     display: block;
     margin-bottom: 1.5rem;
     transition: transform 0.3s ease;
 }
 
-.challenge-item h3 {
+.solution-item h3 {
     font-size: 1.25rem;
     color: var(--text-dark);
     margin-bottom: 1rem;
@@ -77,7 +129,7 @@
     letter-spacing: -0.01em;
 }
 
-.challenge-item p {
+.solution-item p {
     color: var(--text-light);
     line-height: 1.7;
     font-size: 1rem;
@@ -85,20 +137,25 @@
 
 /* Approach Section */
 .approach-section {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: var(--space-8);
-    border-radius: 1.5rem;
-    margin: var(--space-8) var(--space-4);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-xl);
+    max-width: var(--content-max);
+    margin: 0 auto;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+    border: 1px solid var(--bg-glass-border);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    will-change: transform;
 }
 
-@media (prefers-color-scheme: dark) {
-    .approach-section {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-    }
+.approach-section:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
 }
 
 .approach-section h2 {
@@ -149,16 +206,39 @@
 .feature {
     background: var(--bg-white);
     padding: var(--space-6);
-    border-radius: 1.25rem;
+    border-radius: var(--radius-xl);
     border: var(--border-width) solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base),
+                border-color var(--transition-base);
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}
+
+.feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-base);
 }
 
 .feature:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.feature:hover::before {
+    opacity: 1;
 }
 
 .feature-icon {
@@ -215,18 +295,15 @@
 
 /* Benefits Section */
 .benefits {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: var(--space-8);
-    border-radius: 1.5rem;
+    border-radius: var(--radius-xl);
     margin: var(--space-8) var(--space-4);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-@media (prefers-color-scheme: dark) {
-    .benefits {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-    }
+    border: 1px solid var(--bg-glass-border);
+    box-shadow: var(--shadow-lg);
+    will-change: transform;
 }
 
 .benefits h2 {

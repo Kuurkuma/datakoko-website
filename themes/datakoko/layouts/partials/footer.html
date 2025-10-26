@@ -1,11 +1,26 @@
 <footer>
     <div class="footer-content">
-      <div class="footer-section">
+      <div class="footer-section footer-brand">
             <div class="footer-logo-wrapper">
                 <img src="{{ "img/favicon.svg" | relURL }}" alt="{{ .Site.Title }} logo" class="footer-logo">
                 <span class="footer-title">{{ .Site.Title }}</span>
             </div>
             <p class="footer-tagline">{{ i18n "footerTagline" }}</p>
+
+            <div class="footer-theme-toggle">
+                <div class="theme-switcher">
+                    <button class="theme-option" data-theme="auto" aria-label="Auto theme" title="Auto">
+                        <span class="theme-icon">💫</span>
+                    </button>
+                    <button class="theme-option" data-theme="light" aria-label="Light theme" title="Light">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                    <button class="theme-option" data-theme="dark" aria-label="Dark theme" title="Dark">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+
             <p>
               <copyright-notice data-site-title="{{ .Site.Title }}"></copyright-notice>
               {{ $current := . }}

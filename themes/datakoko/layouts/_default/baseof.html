@@ -60,7 +60,7 @@
         <!-- Structured Data (JSON-LD) -->
         {{ partial "schema.html" . }}
     </head>
-    <body>
+    <body{{ if .IsHome }} class="homepage"{{ end }}>
         {{ if .IsHome }}
         <data-infrastructure-scene></data-infrastructure-scene>
         {{ end }}
@@ -70,10 +70,12 @@
         </main>
         {{ partial "footer.html" . }}
         <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+        <script src="{{ "js/theme-toggle.js" | relURL }}"></script>
         <script src="{{ "js/footer-animation.js" | relURL }}"></script>
         <script src="{{ "js/copyright.js" | relURL }}"></script>
         {{ if .IsHome }}
         <script type="module" src="{{ "js/webgl-components.js" | relURL }}"></script>
+        <script src="{{ "js/homepage-parallax.js" | relURL }}"></script>
         {{ end }}
     </body>
 </html>
