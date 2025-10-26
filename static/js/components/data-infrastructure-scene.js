@@ -26,25 +26,25 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         // Animation configuration
         this.objectsDistance = 4;
 
-        // Theme colors
+        // Theme colors - matching Datakoko brand
         this.colors = {
             light: {
-                primary: 0x4a9eff,
-                secondary: 0x00d4aa,
-                accent: 0xff6b6b,
-                particles: 0x4a9eff,
+                primary: 0x008d33,      // Datakoko green
+                secondary: 0x06b6d4,    // Accent cyan
+                accent: 0xa855f7,       // Purple accent
+                particles: 0x22c55e,    // Lighter green
                 ambientLight: 0xffffff,
                 directionalLight: 0xffffff,
-                backLight: 0x4a9eff
+                backLight: 0x22c55e
             },
             dark: {
-                primary: 0x6bb6ff,
-                secondary: 0x00ffcc,
-                accent: 0xff8888,
-                particles: 0x6bb6ff,
+                primary: 0x22c55e,      // Bright green for dark mode
+                secondary: 0x06b6d4,    // Accent cyan
+                accent: 0xa855f7,       // Purple accent
+                particles: 0x4ade80,    // Even brighter green
                 ambientLight: 0xffffff,
                 directionalLight: 0xffffff,
-                backLight: 0x6bb6ff
+                backLight: 0x4ade80
             }
         };
 
@@ -94,16 +94,15 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         // Create lights
         this.createLights(currentColors);
 
-        // Create scene objects for each homepage section
-        // this.createHeroNetwork();        // Section 0: Hero - Infrastructure Network
-        // this.createSolutionsViz();       // Section 1: Solutions - Organizing Chaos
-        // this.createApproachFlow();       // Section 2: Approach - Methodology Flow
-        // this.createServicesModules();    // Section 3: Services - Service Blocks
-        // this.createTechStack();          // Section 4: Tech Stack - Technology Layers
-        // this.createBenefitsGrowth();     // Section 5: Benefits - Growth Visualization
-        // this.createCTAMomentum();        // Section 6: Footer CTA - Forward Momentum
+        // Create hero animation for intro
+        this.createHeroNetwork();
 
-        // Create particles
+        // Create additional scroll-triggered scenes
+        this.createApproachFlow();       // Section 1: Approach - Methodology Flow
+        this.createServicesModules();    // Section 2: Services - Service Blocks
+        this.createTechStack();          // Section 3: Tech Stack - Technology Layers
+
+        // Create particles that persist throughout scroll
         this.createParticles(currentColors);
 
         // Adjust for mobile
@@ -148,50 +147,81 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         this.scene.add(this.lights.back);
     }
 
-    // Section 0: Hero - Data Flowing Through Infrastructure
+    // Section 0: Hero - Data Flowing Through Infrastructure (Enhanced)
     createHeroNetwork() {
         const group = new THREE.Group();
-        const nodeCount = this.isMobile() ? 5 : 7;
+        const nodeCount = this.isMobile() ? 6 : 8;
 
-        // Central data warehouse (larger, distinctive)
-        const warehouse = new THREE.Mesh(
-            new THREE.DodecahedronGeometry(0.5, 0),
-            this.materials.accent
+        // Central data hub (larger, rotating polyhedron with glow)
+        const hubGeometry = new THREE.IcosahedronGeometry(0.6, 1);
+        const hub = new THREE.Mesh(hubGeometry, this.materials.accent);
+        hub.userData.isWarehouse = true;
+        group.add(hub);
+
+        // Add inner core for depth
+        const innerCore = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(0.4, 0),
+            this.materials.primary
         );
-        warehouse.userData.isWarehouse = true;
-        group.add(warehouse);
+        innerCore.userData.isCore = true;
+        group.add(innerCore);
 
-        // Data sources (smaller spheres with pulsing data flow)
+        // Outer ring of data nodes with varied positioning
         for (let i = 0; i < nodeCount; i++) {
             const angle = (i / nodeCount) * Math.PI * 2;
-            const radius = this.isMobile() ? 1.5 : 1.8;
+            const radius = this.isMobile() ? 1.8 : 2.2;
+            const heightOffset = Math.sin(i * Math.PI / nodeCount) * 0.4;
 
-            // Data source node
+            // Data source node (octahedrons for visual variety)
             const source = new THREE.Mesh(
-                new THREE.SphereGeometry(0.25, 12, 12),
+                new THREE.OctahedronGeometry(0.3, 0),
                 this.materials.primary
             );
             source.position.x = Math.cos(angle) * radius;
+            source.position.y = heightOffset;
             source.position.z = Math.sin(angle) * radius;
             source.userData.angle = angle;
             source.userData.radius = radius;
             source.userData.phase = i / nodeCount;
+            source.userData.baseY = heightOffset;
 
-            // Data packet (small sphere that will move along connection)
-            const packet = new THREE.Mesh(
-                new THREE.SphereGeometry(0.08, 8, 8),
-                this.materials.secondary
-            );
-            packet.userData.sourceIndex = i;
-            packet.userData.angle = angle;
-            packet.userData.radius = radius;
+            // Multiple data packets per connection for richer animation
+            for (let p = 0; p < 2; p++) {
+                const packet = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.1, 8, 8),
+                    p === 0 ? this.materials.secondary : this.materials.accent
+                );
+                packet.userData.sourceIndex = i;
+                packet.userData.packetIndex = p;
+                packet.userData.angle = angle;
+                packet.userData.radius = radius;
+                packet.userData.heightOffset = heightOffset;
+                group.add(packet);
+            }
 
             group.add(source);
-            group.add(packet);
         }
 
-        group.position.x = this.isMobile() ? 0 : 2;
-        group.position.y = -this.objectsDistance * 0;
+        // Add orbital rings for visual interest
+        if (!this.isMobile()) {
+            const ringGeometry = new THREE.TorusGeometry(1.5, 0.02, 8, 32);
+            const ring1 = new THREE.Mesh(ringGeometry, this.materials.secondary);
+            ring1.rotation.x = Math.PI / 2;
+            ring1.userData.isRing = true;
+            ring1.userData.ringIndex = 0;
+            group.add(ring1);
+
+            const ring2 = new THREE.Mesh(ringGeometry.clone(), this.materials.primary);
+            ring2.rotation.x = Math.PI / 4;
+            ring2.rotation.z = Math.PI / 3;
+            ring2.userData.isRing = true;
+            ring2.userData.ringIndex = 1;
+            group.add(ring2);
+        }
+
+        // Position for hero section
+        group.position.x = 0;
+        group.position.y = 0;
         this.scene.add(group);
         this.sectionMeshes.push(group);
     }
@@ -288,8 +318,8 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
             }
         }
 
-        group.position.x = this.isMobile() ? 0 : 2;
-        group.position.y = -this.objectsDistance * 2;
+        group.position.x = this.isMobile() ? 0 : 1.5;
+        group.position.y = -this.objectsDistance * 1;
         this.scene.add(group);
         this.sectionMeshes.push(group);
     }
@@ -336,8 +366,8 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
             group.add(connector);
         }
 
-        group.position.x = this.isMobile() ? 0 : -2;
-        group.position.y = -this.objectsDistance * 3;
+        group.position.x = this.isMobile() ? 0 : -1.5;
+        group.position.y = -this.objectsDistance * 2;
         this.scene.add(group);
         this.sectionMeshes.push(group);
     }
@@ -407,8 +437,8 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
             });
         }
 
-        group.position.x = this.isMobile() ? 0 : 2;
-        group.position.y = -this.objectsDistance * 4;
+        group.position.x = this.isMobile() ? 0 : 1.5;
+        group.position.y = -this.objectsDistance * 3;
         this.scene.add(group);
         this.sectionMeshes.push(group);
     }
@@ -505,11 +535,11 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
         const particlesCount = this.isMobile() ? 200 : 400;
         const positions = new Float32Array(particlesCount * 3);
 
-        // Spread particles across all 7 sections
+        // Spread particles throughout entire scroll height
         for (let i = 0; i < particlesCount; i++) {
-            positions[i * 3 + 0] = (Math.random() - 0.5) * 10;
-            positions[i * 3 + 1] = this.objectsDistance * 0.5 - Math.random() * this.objectsDistance * 7; // 7 sections
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+            positions[i * 3 + 0] = (Math.random() - 0.5) * 15;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 20; // Larger vertical spread for scroll
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
         }
 
         const particlesGeometry = new THREE.BufferGeometry();
@@ -528,41 +558,15 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
     }
 
     adjustForMobile() {
-        // Reduce object distance for better mobile viewing
-        this.objectsDistance = 3.5;
-
-        // Update all section positions
-        this.sectionMeshes.forEach((mesh, index) => {
-            mesh.position.y = -this.objectsDistance * index;
-        });
-
-        // Adjust camera for more sections
+        // Adjust camera for mobile
         if (this.camera) {
             this.camera.position.z = 7;
-        }
-
-        // Re-create particles with updated distance
-        if (this.particles) {
-            const particlePositions = this.particles.geometry.attributes.position.array;
-            const particleCount = particlePositions.length / 3;
-
-            for (let i = 0; i < particleCount; i++) {
-                particlePositions[i * 3 + 1] = this.objectsDistance * 0.5 - Math.random() * this.objectsDistance * 7;
-            }
-
-            this.particles.geometry.attributes.position.needsUpdate = true;
         }
     }
 
     setupScrollListener() {
         this.handleScroll = () => {
             this.scrollY = window.scrollY;
-            const newSection = Math.round(this.scrollY / this.sizes.height);
-
-            if (newSection !== this.currentSection && newSection < this.sectionMeshes.length) {
-                this.currentSection = newSection;
-                this.animateSectionEntry(this.currentSection);
-            }
         };
 
         window.addEventListener('scroll', this.handleScroll, { passive: true });
@@ -616,7 +620,7 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
             this.camera.position.y = -this.scrollY / this.sizes.height * this.objectsDistance;
         }
 
-        // Parallax effect (reduced on mobile)
+        // Mouse parallax effect (reduced on mobile)
         if (this.cameraGroup && !this.isMobile()) {
             const parallaxX = this.cursor.x * 0.5;
             const parallaxY = -this.cursor.y * 0.5;
@@ -626,14 +630,14 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
 
         const rotationSpeed = this.isReducedMotion() ? 0 : (this.isMobile() ? 0.015 : 0.02);
 
-        // Calculate section visibility for scroll-based animations with smooth easing
+        // Calculate section visibility based on scroll position
         const getSectionVisibility = (sectionIndex) => {
             const sectionY = -this.objectsDistance * sectionIndex;
             const cameraY = this.camera ? this.camera.position.y : 0;
             const distance = Math.abs(cameraY - sectionY);
-            const rawVisibility = Math.max(0, 1 - distance / (this.objectsDistance * 1.8));
+            const rawVisibility = Math.max(0, 1 - distance / (this.objectsDistance * 1.2));
 
-            // Apply smooth easing curve for more natural transitions
+            // Smooth easing
             const eased = rawVisibility < 0.5
                 ? 2 * rawVisibility * rawVisibility
                 : 1 - Math.pow(-2 * rawVisibility + 2, 2) / 2;
@@ -641,175 +645,113 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
             return eased;
         };
 
-        // Animate each section with unique behaviors
+        // Animate each section based on visibility
         this.sectionMeshes.forEach((group, sectionIndex) => {
-            // Very slow rotation - reduced by 70%
+            // Gentle rotation
             group.rotation.y += deltaTime * rotationSpeed * 0.3;
 
             const visibility = getSectionVisibility(sectionIndex);
 
-            // Section-specific animations
-            switch(sectionIndex) {
-                case 0: // Hero - Data flowing through infrastructure
-                    group.children.forEach((child) => {
-                        if (child.userData.isWarehouse) {
-                            // Central warehouse pulses
-                            child.scale.setScalar(1 + Math.sin(elapsedTime * 2) * 0.1 * visibility);
-                            child.rotation.y += deltaTime * rotationSpeed;
-                        } else if (child.userData.sourceIndex !== undefined) {
-                            // Data packets flow from sources to center
-                            const phase = (elapsedTime + child.userData.sourceIndex) % 3;
-                            const progress = (phase / 3);
-                            const angle = child.userData.angle;
-                            const radius = child.userData.radius * (1 - progress) * visibility;
+            // Animate based on section type
+            if (sectionIndex === 0) {
+                // Hero section
+                group.children.forEach((child) => {
+                    if (child.userData.isWarehouse) {
+                        child.scale.setScalar((1 + Math.sin(elapsedTime * 1.5) * 0.12) * visibility);
+                        child.rotation.y += deltaTime * rotationSpeed * 1.5;
+                        child.rotation.x += deltaTime * rotationSpeed * 0.5;
+                    } else if (child.userData.isCore) {
+                        child.rotation.y -= deltaTime * rotationSpeed * 2;
+                        child.rotation.z += deltaTime * rotationSpeed;
+                        child.scale.setScalar((1 + Math.sin(elapsedTime * 2 + Math.PI) * 0.08) * visibility);
+                    } else if (child.userData.isRing) {
+                        const ringSpeed = child.userData.ringIndex === 0 ? 0.3 : 0.5;
+                        child.rotation.z += deltaTime * rotationSpeed * ringSpeed;
+                        child.material.opacity = 0.7 * visibility;
+                        child.material.transparent = true;
+                    } else if (child.userData.sourceIndex !== undefined) {
+                        const sourceIndex = child.userData.sourceIndex;
+                        const packetIndex = child.userData.packetIndex;
+                        const phase = (elapsedTime * 0.7 + sourceIndex * 0.4 + packetIndex * 1.5) % 3;
+                        const progress = (phase / 3);
+                        const angle = child.userData.angle;
+                        const heightOffset = child.userData.heightOffset || 0;
+                        const radius = child.userData.radius * (1 - progress);
+                        const heightProgress = Math.sin(progress * Math.PI) * 0.3;
 
-                            child.position.x = Math.cos(angle) * radius;
-                            child.position.z = Math.sin(angle) * radius;
-                            child.scale.setScalar(visibility * (1 - progress * 0.5));
-                        } else {
-                            // Source nodes pulse with data activity
-                            const pulse = Math.sin(elapsedTime * 3 + child.userData.phase * Math.PI * 2) * 0.15;
-                            child.scale.setScalar((1 + pulse) * visibility);
-                            child.rotation.y += deltaTime * rotationSpeed;
-                        }
-                    });
-                    break;
-
-                case 1: // Solutions - Fragmented sources unifying
-                    group.children.forEach((child) => {
-                        if (child.userData.isCore) {
-                            // Central DB pulses when receiving data
-                            child.scale.setScalar(1 + Math.sin(elapsedTime * 2) * 0.1 * visibility);
-                            child.rotation.z += deltaTime * rotationSpeed * 0.5;
-                        } else if (child.userData.fragmentIndex !== undefined) {
-                            // Fragments pull toward unified positions
-                            child.position.x = child.userData.scatteredX + (child.userData.unifiedX - child.userData.scatteredX) * visibility;
-                            child.position.y = child.userData.scatteredY + (child.userData.unifiedY - child.userData.scatteredY) * visibility;
-                            child.position.z = child.userData.scatteredZ + (child.userData.unifiedZ - child.userData.scatteredZ) * visibility;
-
-                            // Rotate faster when scattered (chaotic), slower when unified
-                            const rotationFactor = 1 - visibility * 0.7;
-                            child.rotation.x += deltaTime * rotationSpeed * 2 * rotationFactor;
-                            child.rotation.y += deltaTime * rotationSpeed * 1.5 * rotationFactor;
-                        }
-                    });
-                    break;
-
-                case 2: // Approach - Transformation pipeline with flowing data
-                    const stages = this.isMobile() ? 3 : 4;
-                    group.children.forEach((child) => {
-                        if (child.userData.stageIndex !== undefined) {
-                            // Pipeline stages process data
-                            const stageIndex = child.userData.stageIndex;
-                            const pulse = Math.sin(elapsedTime * 2 - stageIndex * 0.5) * 0.1 * visibility;
-                            child.scale.setScalar(1 + pulse);
-                            child.rotation.y += deltaTime * rotationSpeed * 0.4;
-                        } else if (child.userData.fromStage !== undefined) {
-                            // Particles flow between stages
-                            const progress = (elapsedTime * 0.5 + child.userData.particleIndex * 0.3) % 1;
-                            const fromX = (child.userData.fromStage - stages / 2) * 1.2;
-                            const toX = (child.userData.toStage - stages / 2) * 1.2;
-
-                            child.position.x = fromX + (toX - fromX) * progress;
-                            child.position.y = Math.sin(progress * Math.PI) * 0.3;
-                            child.scale.setScalar(visibility * (0.5 + Math.sin(progress * Math.PI) * 0.5));
-                        }
-                    });
-                    break;
-
-                case 3: // Services - Interconnected ecosystem
-                    group.children.forEach((child) => {
-                        if (child.userData.isHub) {
-                            // Hub pulses with activity
-                            child.scale.setScalar(1 + Math.sin(elapsedTime * 2) * 0.15 * visibility);
-                        } else if (child.userData.moduleIndex !== undefined && !child.userData.isConnector) {
-                            // Modules orbit and communicate
-                            const angle = child.userData.angle + elapsedTime * 0.3;
-                            const radius = child.userData.radius;
-                            child.position.x = Math.cos(angle) * radius * visibility + (1 - visibility) * 2;
-                            child.position.z = Math.sin(angle) * radius * visibility;
-                            child.rotation.y += deltaTime * rotationSpeed * 0.5;
-                            child.rotation.x += deltaTime * rotationSpeed * 0.3;
-                        } else if (child.userData.isConnector) {
-                            // Connectors travel between hub and modules
-                            const moduleIndex = child.userData.moduleIndex;
-                            const progress = (elapsedTime + moduleIndex * 0.5) % 2 / 2;
-                            const angle = (moduleIndex / (this.isMobile() ? 4 : 6)) * Math.PI * 2 + elapsedTime * 0.3;
-                            const radius = child.userData.radius || (this.isMobile() ? 1.1 : 1.3);
-
-                            child.position.x = Math.cos(angle) * radius * progress * visibility;
-                            child.position.z = Math.sin(angle) * radius * progress * visibility;
-                            child.scale.setScalar(visibility * Math.sin(progress * Math.PI));
-                        }
-                    });
-                    break;
-
-                case 4: // Tech Stack - Building blocks
-                    group.children.forEach((child) => {
-                        if (child.userData.layerIndex !== undefined && !child.userData.isIndicator) {
-                            // Layers stack when visible
-                            const baseY = child.userData.baseY;
-                            const spreadY = baseY * (1 - visibility) * 3;
-                            const breathe = Math.sin(elapsedTime * 1.5 + child.userData.layerIndex * 0.5) * 0.04 * visibility;
-
-                            child.position.y = baseY + spreadY + breathe;
-                            child.scale.set(1, 1, 1); // Reset scale
-                            child.rotation.y += deltaTime * rotationSpeed * 0.2;
-                        } else if (child.userData.isIndicator) {
-                            // Active indicators pulse
-                            const pulse = (Math.sin(elapsedTime * 3 + child.userData.indicatorIndex) + 1) / 2;
-                            child.scale.setScalar(visibility * pulse);
-                        }
-                    });
-                    break;
-
-                case 5: // Benefits - Before/After improvement
-                    group.children.forEach((child) => {
-                        if (child.userData.isBefore) {
-                            // Before state stays small
-                            child.scale.y = 1;
-                        } else if (child.userData.isAfter) {
-                            // After state grows with visibility
-                            child.scale.y = Math.max(0.01, visibility);
-                        } else if (child.userData.isIndicator) {
-                            // Indicators rise from before to after
-                            const metricIndex = child.userData.metricIndex;
-                            const xPos = (metricIndex - (this.isMobile() ? 4 : 6) / 2) * 0.5;
-                            const yProgress = visibility;
-
-                            child.position.x = xPos;
-                            child.position.y = -0.3 + yProgress * 0.5;
-                            child.scale.setScalar(visibility * (0.8 + Math.sin(elapsedTime * 2 - metricIndex * 0.3) * 0.2));
-                        }
-                    });
-                    break;
-
-                case 6: // CTA - Accelerating forward
-                    group.children.forEach((child) => {
-                        if (child.userData.layerIndex !== undefined && !child.userData.isTrail) {
-                            // Arrows accelerate forward
-                            const layerIndex = child.userData.layerIndex;
-                            const baseZ = child.userData.baseZ;
-                            const forward = Math.sin(elapsedTime * 2 - layerIndex * 0.2) * 0.25 * visibility;
-
-                            child.position.z = baseZ + forward;
-                            child.scale.setScalar(0.7 + visibility * 0.3);
-                        } else if (child.userData.isTrail) {
-                            // Motion trails follow arrows
-                            const arrowIndex = child.userData.arrowIndex;
-                            const progress = (elapsedTime * 2 + arrowIndex * 0.3) % 1;
-                            const layerCount = this.isMobile() ? 4 : 6;
-
-                            child.position.x = (arrowIndex - layerCount / 2) * 0.4;
-                            child.position.z = -arrowIndex * 0.15 - progress * 0.4;
-                            child.scale.setScalar(visibility * (1 - progress));
-                        }
-                    });
-                    break;
+                        child.position.x = Math.cos(angle) * radius;
+                        child.position.y = heightOffset * (1 - progress) + heightProgress;
+                        child.position.z = Math.sin(angle) * radius;
+                        child.scale.setScalar((0.8 + Math.sin(progress * Math.PI) * 0.4) * visibility);
+                    } else if (child.userData.phase !== undefined) {
+                        const pulse = Math.sin(elapsedTime * 2.5 + child.userData.phase * Math.PI * 2) * 0.2;
+                        child.scale.setScalar((1 + pulse) * visibility);
+                        child.rotation.y += deltaTime * rotationSpeed * 0.8;
+                        child.rotation.x += deltaTime * rotationSpeed * 0.3;
+                        const bob = Math.sin(elapsedTime + child.userData.phase * Math.PI) * 0.05;
+                        child.position.y = (child.userData.baseY || 0) + bob;
+                    }
+                });
+            } else if (sectionIndex === 1) {
+                // Approach section
+                const stages = this.isMobile() ? 3 : 4;
+                group.children.forEach((child) => {
+                    if (child.userData.stageIndex !== undefined) {
+                        const stageIndex = child.userData.stageIndex;
+                        const pulse = Math.sin(elapsedTime * 2 - stageIndex * 0.5) * 0.1 * visibility;
+                        child.scale.setScalar((1 + pulse) * visibility);
+                        child.rotation.y += deltaTime * rotationSpeed * 0.4;
+                    } else if (child.userData.fromStage !== undefined) {
+                        const progress = (elapsedTime * 0.5 + child.userData.particleIndex * 0.3) % 1;
+                        const fromX = (child.userData.fromStage - stages / 2) * 1.2;
+                        const toX = (child.userData.toStage - stages / 2) * 1.2;
+                        child.position.x = fromX + (toX - fromX) * progress;
+                        child.position.y = Math.sin(progress * Math.PI) * 0.3;
+                        child.scale.setScalar(visibility * (0.5 + Math.sin(progress * Math.PI) * 0.5));
+                    }
+                });
+            } else if (sectionIndex === 2) {
+                // Services section
+                group.children.forEach((child) => {
+                    if (child.userData.isHub) {
+                        child.scale.setScalar((1 + Math.sin(elapsedTime * 2) * 0.15) * visibility);
+                    } else if (child.userData.moduleIndex !== undefined && !child.userData.isConnector) {
+                        const angle = child.userData.angle + elapsedTime * 0.3;
+                        const radius = child.userData.radius;
+                        child.position.x = Math.cos(angle) * radius * visibility + (1 - visibility) * 2;
+                        child.position.z = Math.sin(angle) * radius * visibility;
+                        child.rotation.y += deltaTime * rotationSpeed * 0.5;
+                        child.rotation.x += deltaTime * rotationSpeed * 0.3;
+                    } else if (child.userData.isConnector) {
+                        const moduleIndex = child.userData.moduleIndex;
+                        const progress = (elapsedTime + moduleIndex * 0.5) % 2 / 2;
+                        const angle = (moduleIndex / (this.isMobile() ? 4 : 6)) * Math.PI * 2 + elapsedTime * 0.3;
+                        const radius = child.userData.radius || (this.isMobile() ? 1.1 : 1.3);
+                        child.position.x = Math.cos(angle) * radius * progress * visibility;
+                        child.position.z = Math.sin(angle) * radius * progress * visibility;
+                        child.scale.setScalar(visibility * Math.sin(progress * Math.PI));
+                    }
+                });
+            } else if (sectionIndex === 3) {
+                // Tech Stack section
+                group.children.forEach((child) => {
+                    if (child.userData.isNode) {
+                        const basePos = child.userData.basePos;
+                        const spreadFactor = (1 - visibility) * 2;
+                        child.position.x = basePos.x * (1 + spreadFactor);
+                        child.position.y = basePos.y * (1 + spreadFactor);
+                        child.position.z = basePos.z * (1 + spreadFactor);
+                        child.scale.setScalar(visibility);
+                        child.rotation.y += deltaTime * rotationSpeed * 0.5;
+                    } else if (child.userData.isBeam) {
+                        child.material.opacity = 0.6 * visibility;
+                        child.material.transparent = true;
+                    }
+                });
             }
         });
 
-        // Animate particles
+        // Animate particles - ALWAYS VISIBLE (no fade)
         if (this.particles && !this.isReducedMotion()) {
             const particlePositions = this.particles.geometry.attributes.position.array;
             const particleCount = particlePositions.length / 3;
@@ -825,19 +767,20 @@ export class DataInfrastructureScene extends BaseWebGLComponent {
     }
 
     onResize() {
-        // Adjust for mobile/desktop
-        if (this.isMobile() && this.sectionMeshes.length > 0) {
-            this.sectionMeshes.forEach((mesh) => {
-                mesh.position.x = 0;
-            });
-        } else if (this.sectionMeshes.length > 0) {
-            // Alternate left/right positioning for desktop
-            const positions = [2, -2, 2, -2, 2, -2, 2];
-            this.sectionMeshes.forEach((mesh, index) => {
-                if (positions[index] !== undefined) {
-                    mesh.position.x = positions[index];
-                }
-            });
+        // Adjust positioning for mobile/desktop
+        if (this.sectionMeshes.length > 0) {
+            if (this.isMobile()) {
+                this.sectionMeshes.forEach((mesh) => {
+                    mesh.position.x = 0;
+                });
+            } else {
+                const positions = [0, 1.5, -1.5, 1.5];
+                this.sectionMeshes.forEach((mesh, index) => {
+                    if (positions[index] !== undefined) {
+                        mesh.position.x = positions[index];
+                    }
+                });
+            }
         }
     }
 

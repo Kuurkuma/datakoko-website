@@ -11,6 +11,7 @@
 
     /* Color Palette - Light Theme */
     --primary-color: #008d33;
+    --primary-color-rgb: 0, 141, 51;
     --primary-dark: #1f5a00;
     --primary-light: #3d9e00;
     --secondary-color: #a855f7;
@@ -81,6 +82,7 @@
         --bg-glass-border: rgba(255, 255, 255, 0.1);
         --border-color: #243144;
         --primary-color: #22c55e;
+        --primary-color-rgb: 34, 197, 94;
         --primary-dark: #22c55e;
         --primary-light: #86efac;
         --secondary-color: #a855f7;
