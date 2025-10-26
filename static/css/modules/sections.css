@@ -58,21 +58,6 @@ body.homepage .benefit-item {
     font-weight: 400;
 }
 
-/* Solutions Section (formerly Challenges) */
-.solutions-section {
-    margin: var(--space-8) 0;
-    padding: 0 var(--space-4);
-}
-
-.solutions-section h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-    text-align: center;
-    letter-spacing: -0.02em;
-}
-
 .section-subtitle {
     text-align: center;
     font-size: 1.2rem;
@@ -82,56 +67,6 @@ body.homepage .benefit-item {
     margin-left: auto;
     margin-right: auto;
     line-height: 1.7;
-}
-
-.solutions-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-5);
-    margin: var(--space-5) 0;
-}
-
-.solutions-grid > .solution-item {
-    flex: 1 1 18rem;
-    max-width: 22rem;
-}
-
-.solution-item {
-    padding: var(--space-6);
-    border: var(--border-width) solid var(--border-color);
-    text-align: center;
-    background: var(--bg-white);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
-    will-change: transform;
-}
-
-.solution-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
-
-.solution-icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.solution-item h3 {
-    font-size: 1.25rem;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
-
-.solution-item p {
-    color: var(--text-light);
-    line-height: 1.7;
-    font-size: 1rem;
 }
 
 /* Approach Section */
@@ -300,6 +235,8 @@ body.homepage .benefit-item {
     border: 1px solid var(--bg-glass-border);
     box-shadow: var(--shadow-lg);
     will-change: transform;
+    max-width: var(--content-max);
+    margin: 0 auto;
 }
 
 .benefits h2 {

@@ -52,7 +52,6 @@ languages:
     weight: 2
     disabled: false
     permalinks:
-      challenges: /defis/:slug/
       benefits: /avantages/:slug/
       audit-benefits: /avantages-audit/:slug/
       process-steps: /processus-etapes/:slug/

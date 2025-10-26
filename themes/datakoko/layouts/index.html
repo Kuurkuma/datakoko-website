@@ -6,23 +6,6 @@
 </section>
 {{ end }}
 
-<!-- What We Solve Section (formerly Challenges) -->
-<section class="solutions-section">
-    <h2>{{ i18n "whatWeSolve" }}</h2>
-    <p class="section-subtitle">{{ i18n "solutionsSubtitle" }}</p>
-    <div class="solutions-grid">
-        {{ range (where .Site.RegularPages "Section" "challenges") }}
-        <div class="solution-item">
-            {{ with .Params.icon }}
-            <span class="solution-icon">{{ . }}</span>
-            {{ end }}
-            <h3>{{ .Title }}</h3>
-            <p>{{ .Content }}</p>
-        </div>
-        {{ end }}
-    </div>
-</section>
-
 <!-- Approach Section -->
 {{ with .Params.approach_title }}
 <section class="approach-section">

@@ -13,7 +13,7 @@ css/
 │   ├── layout.css         # Layout & structure
 │   ├── header.css         # Header & navigation
 │   ├── hero.css           # Hero section & CTA buttons
-│   ├── sections.css       # Homepage sections (challenges, approach, services, benefits)
+│   ├── sections.css       # Homepage sections (approach, services, benefits)
 │   ├── tech-stack.css     # Tech stack display
 │   ├── footer.css         # Footer styles
 │   └── contact.css        # Contact page styles
