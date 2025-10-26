@@ -99,7 +99,6 @@ body.homepage .benefit-item {
 
 .solution-item {
     padding: var(--space-6);
-    border-radius: var(--radius-xl);
     border: var(--border-width) solid var(--border-color);
     text-align: center;
     background: var(--bg-white);
@@ -141,7 +140,6 @@ body.homepage .benefit-item {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: var(--space-8);
-    border-radius: var(--radius-xl);
     max-width: var(--content-max);
     margin: 0 auto;
     margin-top: var(--space-8);
@@ -206,7 +204,6 @@ body.homepage .benefit-item {
 .feature {
     background: var(--bg-white);
     padding: var(--space-6);
-    border-radius: var(--radius-xl);
     border: var(--border-width) solid var(--border-color);
     box-shadow: var(--shadow-md);
     transition: transform var(--transition-base),
@@ -299,7 +296,6 @@ body.homepage .benefit-item {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: var(--space-4);
-    border-radius: var(--radius-xl);
     margin: var(--space-4);
     border: 1px solid var(--bg-glass-border);
     box-shadow: var(--shadow-lg);
@@ -369,7 +365,6 @@ body.homepage .benefit-item {
     text-align: center;
     margin: var(--space-8) var(--space-4);
     padding: var(--space-8);
-    border-radius: 1.5rem;
 }
 
 .service-cta h2 {
@@ -400,7 +395,6 @@ body.homepage .benefit-item {
 .credits-page .credits-list li {
     background: var(--bg-white);
     padding: 1.5rem;
-    border-radius: 0.5rem;
     border: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;

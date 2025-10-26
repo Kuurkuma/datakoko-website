@@ -1,48 +1,4 @@
 {{ define "main" }}
-<div class="hero-modern">
-    <div class="hero-content">
-        <div class="hero-badge">
-            <span class="badge-icon">⚡</span>
-            <span class="badge-text">{{ with .Params.badge }}{{ . }}{{ else }}Modern Data Infrastructure{{ end }}</span>
-        </div>
-        <h1 class="hero-title">{{ .Title }}</h1>
-        {{ with .Params.subtitle }}
-        <p class="hero-subtitle">{{ . }}</p>
-        {{ end }}
-        <div class="hero-cta-group">
-            <a href="{{ relLangURL "contact" }}" class="cta-button cta-primary">{{ i18n "contactUs" }}</a>
-            {{ with site.GetPage "services" }}
-            <a href="{{ .RelPermalink }}" class="cta-button cta-secondary">{{ i18n "ourServices" }}</a>
-            {{ end }}
-        </div>
-        {{ with .Params.stats }}
-        <div class="hero-stats">
-            {{ range . }}
-            <div class="stat-item">
-                <div class="stat-value">{{ .value }}</div>
-                <div class="stat-label">{{ .label }}</div>
-            </div>
-            {{ end }}
-        </div>
-        {{ end }}
-    </div>
-    <div class="hero-visual">
-        <div class="floating-card card-1">
-            <div class="card-icon">📊</div>
-            <div class="card-text">Real-time Analytics</div>
-        </div>
-        <div class="floating-card card-2">
-            <div class="card-icon">🔒</div>
-            <div class="card-text">Data Sovereignty</div>
-        </div>
-        <div class="floating-card card-3">
-            <div class="card-icon">⚡</div>
-            <div class="card-text">30-Day Deployment</div>
-        </div>
-        <div class="hero-glow"></div>
-    </div>
-</div>
-
 <!-- Intro Section -->
 {{ with .Params.intro }}
 <section class="intro-section">
