@@ -14,7 +14,6 @@
 
 /* 4. Components */
 @import url('modules/header.css');
-@import url('modules/hero.css');
 @import url('modules/sections.css');
 @import url('modules/tech-stack.css');
 @import url('modules/footer.css');

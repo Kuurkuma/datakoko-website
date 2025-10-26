@@ -85,7 +85,7 @@ main {
 
 /* Section Spacing */
 section {
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-4);
 }
 
 .section-subtitle {
@@ -244,3 +244,15 @@ section {
         min-height: 420px;
     }
 }
+
+
+.cta-button {
+  border: var(--border-width) solid var(--primary-color);
+  padding: var(--space-2);
+  text-decoration-color: transparent;
+  transition: text-decoration-color 200ms ease-in-out;
+}
+.cta-button:hover {
+  text-decoration-color: inherit;
+}
+

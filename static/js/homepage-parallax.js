@@ -11,14 +11,10 @@ if (document.readyState === 'loading') {
 }
 
 function initParallax() {
-    // Get hero elements
-    const heroContent = document.querySelector('.hero-content');
-    const heroVisual = document.querySelector('.hero-visual');
-
     // Simple fade-in animation for individual elements
     const animationConfigs = {
         // Intro section - simple fade up
-        '.intro-section': { distance: 30, stagger: 0 },
+        '.intro-section': { distance: 50, stagger: 0 },
 
         // Solutions section - staggered fade up
         '.solutions-section h2': { distance: 40, stagger: 0 },
@@ -26,17 +22,18 @@ function initParallax() {
         '.solution-item': { distance: 40, stagger: 150 },
 
         // Approach section - fade up
+        '.approach-section': { distance: 0, stagger: 0 },
         '.approach-section h2': { distance: 40, stagger: 0 },
         '.approach-section .approach-text': { distance: 30, stagger: 100 },
         '.approach-section .feature-link': { distance: 20, stagger: 200 },
 
         // Services section - staggered cards
-        '.services-section h2': { distance: 40, stagger: 0 },
+        '.services-section h2': { distance: 0, stagger: 0 },
         '.feature': { distance: 40, stagger: 100 },
 
         // Benefits section - simple fade
-        '.benefits h2': { distance: 40, stagger: 0 },
-        '.benefit-item': { distance: 40, stagger: 100 },
+        '.benefits h2': { distance: 20, stagger: 0 },
+        '.benefit-item': { distance: 20, stagger: 20 },
 
         // CTA section
         '.service-cta h2': { distance: 40, stagger: 0 },
@@ -74,25 +71,6 @@ function initParallax() {
     function animate() {
         const windowHeight = window.innerHeight;
 
-        // Subtle hero parallax
-        if (heroContent) {
-            const heroRect = heroContent.getBoundingClientRect();
-            if (heroRect.top < windowHeight && heroRect.bottom > 0) {
-                const progress = (windowHeight - heroRect.top) / (windowHeight + heroRect.height);
-                const parallax = progress * 30;
-                heroContent.style.transform = `translate3d(0, ${-parallax}px, 0)`;
-            }
-        }
-
-        if (heroVisual) {
-            const heroRect = heroVisual.getBoundingClientRect();
-            if (heroRect.top < windowHeight && heroRect.bottom > 0) {
-                const progress = (windowHeight - heroRect.top) / (windowHeight + heroRect.height);
-                const parallax = progress * 25;
-                heroVisual.style.transform = `translate3d(0, ${parallax}px, 0)`;
-            }
-        }
-
         // Animate elements based on scroll position
         elementsToAnimate.forEach(item => {
             const rect = item.element.getBoundingClientRect();
@@ -122,7 +100,7 @@ function initParallax() {
             const opacity = progress;
 
             // Apply with smooth transition
-            item.element.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            item.element.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
             item.element.style.opacity = opacity;
             item.element.style.transform = `translate3d(0, ${translateY}px, 0)`;
         });
@@ -178,58 +156,4 @@ function initParallax() {
     }
 
     continuousParallax();
-
-    // Mouse parallax for cards - very subtle
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentMouseX = 0;
-    let currentMouseY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animateMouse() {
-        currentMouseX += (mouseX - currentMouseX) * 0.1;
-        currentMouseY += (mouseY - currentMouseY) * 0.1;
-
-        elementsToAnimate.forEach(item => {
-            const el = item.element;
-
-            // Only apply to cards
-            if (!el.classList.contains('solution-item') &&
-                !el.classList.contains('feature') &&
-                !el.classList.contains('benefit-item')) {
-                return;
-            }
-
-            if (item.progress < 0.9) return;
-
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const cardCenterX = rect.left + rect.width / 2;
-                const cardCenterY = rect.top + rect.height / 2;
-
-                const distanceX = (currentMouseX - cardCenterX) / window.innerWidth;
-                const distanceY = (currentMouseY - cardCenterY) / window.innerHeight;
-
-                // Very subtle 3D effect
-                const tiltX = distanceY * 2;
-                const tiltY = -distanceX * 2;
-                const translateZ = (Math.abs(distanceX) + Math.abs(distanceY)) * 5;
-
-                // Get current Y offset from continuous parallax
-                const currentTransform = el.style.transform || '';
-                const match = currentTransform.match(/translate3d\(0,\s*([^,]+),/);
-                const yOffset = match ? match[1] : '0px';
-
-                el.style.transform = `translate3d(0, ${yOffset}, 0) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${translateZ}px)`;
-            }
-        });
-
-        requestAnimationFrame(animateMouse);
-    }
-
-    animateMouse();
 }
